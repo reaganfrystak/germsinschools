@@ -1,0 +1,970 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>How Handwashing Slows the Spread of Disease in Schools</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Libre+Franklin:wght@400;500;600;700&family=DM+Serif+Display&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #FAFAF5;
+      --text: #2C2C2C;
+      --text-muted: #777;
+      --text-light: #999;
+      --accent: #FF9800;
+      --green: #2E7D32;
+      --green-light: #E8F5E9;
+      --border: #e5e0d5;
+      --card-bg: #fff;
+      --serif: 'DM Serif Display', Georgia, serif;
+      --sans: 'Libre Franklin', 'Helvetica Neue', Arial, sans-serif;
+    }
+
+    body {
+      font-family: var(--sans);
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+    }
+
+
+    .page {
+      max-width: 680px;
+      margin: 0 auto;
+      padding: 48px 24px 80px;
+    }
+
+
+    h1 {
+      font-family: var(--serif);
+      font-size: clamp(28px, 5vw, 40px);
+      line-height: 1.15;
+      letter-spacing: -0.02em;
+      color: #1a1a1a;
+      margin-bottom: 8px;
+    }
+
+    .subtitle {
+      font-size: 15px;
+      color: var(--text-muted);
+      margin-bottom: 40px;
+      line-height: 1.5;
+    }
+
+    h2 {
+      font-family: var(--serif);
+      font-size: clamp(22px, 3.5vw, 28px);
+      color: #1a1a1a;
+      margin-top: 48px;
+      margin-bottom: 12px;
+      letter-spacing: -0.01em;
+    }
+
+    p {
+      font-size: 16px;
+      margin-bottom: 16px;
+      color: #3a3a3a;
+    }
+
+    a {
+      color: var(--green);
+      text-decoration: underline;
+      text-decoration-color: rgba(46, 125, 50, 0.3);
+      text-underline-offset: 2px;
+      transition: text-decoration-color 0.2s;
+    }
+    a:hover {
+      text-decoration-color: var(--green);
+    }
+
+    strong {
+      font-weight: 600;
+      color: #2a2a2a;
+    }
+
+    
+    .figure {
+      margin: 32px 0;
+      border-radius: 14px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      background: var(--card-bg);
+      box-shadow: 0 2px 12px rgba(0,0,0,0.04);
+    }
+
+    .figure-placeholder {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 240px;
+      background: repeating-linear-gradient(
+        45deg,
+        transparent,
+        transparent 10px,
+        rgba(0,0,0,0.015) 10px,
+        rgba(0,0,0,0.015) 20px
+      );
+      color: var(--text-light);
+      font-size: 14px;
+      font-weight: 500;
+      text-align: center;
+      padding: 24px;
+    }
+
+    .figure-caption {
+      padding: 12px 16px;
+      font-size: 13px;
+      color: var(--text-muted);
+      border-top: 1px solid var(--border);
+      background: #fafaf7;
+    }
+    .figure-caption strong {
+      color: #555;
+    }
+
+    
+    #simulation-container {
+      margin: 32px 0;
+    }
+
+
+    .sim-wrapper {
+      max-width: 100%;
+      padding: 0;
+    }
+
+    .sim-title {
+      font-family: var(--serif);
+      font-size: 22px;
+      margin: 0 0 2px;
+      letter-spacing: -0.02em;
+      color: #1a1a1a;
+    }
+
+    .sim-desc {
+      font-size: 13.5px;
+      color: var(--text-muted);
+      margin: 0 0 20px;
+      line-height: 1.5;
+    }
+
+    .wash-label {
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--text-light);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 8px;
+    }
+    .wash-label span { font-weight: 400; text-transform: none; letter-spacing: 0; }
+
+    .wash-row { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 16px; }
+
+    .wash-btn {
+      flex: 1 1 0;
+      min-width: 130px;
+      padding: 12px 10px;
+      border-radius: 12px;
+      border: 2px dashed #ccc;
+      background: #fff;
+      cursor: pointer;
+      transition: all 0.25s ease;
+      text-align: center;
+      font-family: var(--sans);
+    }
+    .wash-btn.active {
+      border: 2px solid var(--green);
+      background: var(--green-light);
+    }
+    .wash-btn.disabled { opacity: 0.6; cursor: default; }
+    .wash-btn .icon { font-size: 22px; margin-bottom: 4px; }
+    .wash-btn .label { font-size: 12px; font-weight: 600; color: var(--text-light); }
+    .wash-btn.active .label { color: var(--green); }
+    .wash-btn .desc { font-size: 10px; color: #aaa; margin-top: 2px; }
+
+    .floor-plan {
+      width: 100%;
+      border-radius: 14px;
+      border: 1px solid #d6d0c4;
+      background: #f4f0e6;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+      margin-bottom: 4px;
+    }
+
+    .transition-banner {
+      text-align: center;
+      padding: 6px 0;
+      font-size: 12px;
+      font-weight: 600;
+      color: #E65100;
+      background: #FFF3E0;
+      border-radius: 8px;
+      margin-bottom: 8px;
+      border: 1px solid #FFE0B2;
+    }
+
+    .timeline-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 6px;
+    }
+    .timeline-period { font-size: 13px; font-weight: 600; color: #444; }
+    .timeline-time { font-size: 12px; color: var(--text-light); }
+    .timeline-bar { height: 8px; background: #e5e0d5; border-radius: 4px; overflow: hidden; }
+    .timeline-fill {
+      height: 100%;
+      background: linear-gradient(90deg, #FFB74D, #FF9800, #F57C00);
+      border-radius: 4px;
+      transition: width 0.15s;
+    }
+    .timeline-fill.transitioning { background: linear-gradient(90deg, #FFE0B2, #FF9800); }
+    .timeline-labels { display: flex; justify-content: space-between; font-size: 9px; color: #bbb; margin-top: 3px; }
+    .timeline-labels .active { font-weight: 600; color: var(--accent); }
+
+    .controls-row { display: flex; gap: 8px; margin-bottom: 14px; align-items: stretch; }
+
+    .btn-primary {
+      flex: 1;
+      padding: 12px 0;
+      border-radius: 12px;
+      border: none;
+      color: white;
+      font-weight: 700;
+      font-size: 14px;
+      cursor: pointer;
+      font-family: var(--sans);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.12);
+    }
+    .btn-primary.start { background: var(--green); }
+    .btn-primary.pause { background: #E53935; }
+    .btn-primary.done { background: #7986CB; }
+
+    .btn-secondary {
+      padding: 12px 18px;
+      border-radius: 12px;
+      border: 1px solid #d0ccc2;
+      background: white;
+      font-size: 14px;
+      cursor: pointer;
+      font-family: var(--sans);
+      color: #666;
+    }
+
+    .speed-group {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      padding: 0 12px;
+      border-radius: 12px;
+      border: 1px solid #d0ccc2;
+      background: white;
+    }
+    .speed-label { font-size: 10px; color: var(--text-light); font-weight: 600; }
+    .speed-btn {
+      width: 26px; height: 26px; border-radius: 6px; border: none;
+      background: #f0ece0; color: var(--text-light); font-weight: 700; font-size: 11px; cursor: pointer;
+    }
+    .speed-btn.active { background: var(--accent); color: white; }
+
+    .counters { display: flex; gap: 8px; margin-bottom: 16px; }
+    .counter {
+      flex: 1; text-align: center; padding: 10px 0; border-radius: 12px;
+    }
+    .counter .emoji { font-size: 11px; margin-bottom: 2px; }
+    .counter .value { font-size: 24px; font-weight: 700; line-height: 1; }
+    .counter .label { font-size: 10px; color: var(--text-light); font-weight: 600; margin-top: 2px; }
+
+    .sir-card {
+      background: white;
+      border-radius: 14px;
+      border: 1px solid var(--border);
+      padding: 14px 16px 10px;
+      box-shadow: 0 1px 6px rgba(0,0,0,0.04);
+    }
+    .sir-title { font-size: 12px; font-weight: 600; color: #555; margin-bottom: 10px; }
+    .sir-legend { display: flex; justify-content: center; gap: 20px; margin-top: 8px; }
+    .sir-legend-item { display: flex; align-items: center; gap: 5px; font-size: 11px; color: #888; }
+    .sir-legend-dot { width: 12px; height: 4px; border-radius: 2px; }
+
+    .report {
+      margin-top: 16px;
+      padding: 20px;
+      border-radius: 14px;
+      text-align: center;
+    }
+    .report-title { font-size: 15px; font-weight: 700; color: #333; margin-bottom: 6px; }
+    .report-count { font-size: 32px; font-weight: 700; line-height: 1.2; }
+    .report-sub { font-size: 14px; color: #666; margin-top: 2px; }
+    .report-hint { font-size: 12px; color: var(--text-light); margin-top: 8px; line-height: 1.5; }
+
+    .sim-footnote {
+      font-size: 10px;
+      color: #c0bdb5;
+      margin-top: 14px;
+      text-align: center;
+      line-height: 1.5;
+    }
+
+
+    .sources {
+      margin-top: 48px;
+      padding-top: 24px;
+      border-top: 1px solid var(--border);
+    }
+    .sources h2 { margin-top: 0; font-size: 20px; }
+    .sources ul {
+      list-style: none;
+      padding: 0;
+    }
+    .sources li {
+      font-size: 14px;
+      margin-bottom: 10px;
+      padding-left: 16px;
+      position: relative;
+      color: #555;
+    }
+    .sources li::before {
+      content: "→";
+      position: absolute;
+      left: 0;
+      color: #bbb;
+    }
+
+
+    @media (max-width: 500px) {
+      .page { padding: 32px 16px 60px; }
+      .wash-btn { min-width: 100px; padding: 10px 6px; }
+      .speed-group { padding: 0 8px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+
+
+    <h1>How Handwashing Slows the Spread of Diseases in Schools</h1>
+    <p class="subtitle">How the simple habit of handwashing can reshape outbreaks within schools.</p>
+
+
+    <h2>Classrooms & Germs</h2>
+    <p>Every school year, classrooms become hotbeds for diseases. Children sit close together, touch the same surfaces, and frequently touch their eyes, noses, and mouths throughout the day. Common illnesses like norovirus, salmonella, and respiratory infections, like adenovirus, thrive in these environments. The consequences aren't trivial: according to the <a href="https://www.cdc.gov/handwashing/about/index.html" target="_blank">CDC</a>, approximately 1.8 million children under the age of five die each year from diarrheal diseases and pneumonia worldwide.</p>
+
+
+    <h2>SIR Models & Disease Movements</h2>
+    <p>To understand how an illness tears through a school, epidemiologists use a framework called the SIR model. A population can be divided into three groups: Susceptible (healthy but at risk), "Infectious" (sick and contagious), and Recovered (no longer contagious). Every student starts in the “Susceptible” group. When an infectious student interacts with a susceptible one, there's a chance for the disease to transfer, making the other student "Infectious" as well. After the period of the illness is over, they can be moved to the “Recovered” category.</p>
+
+   
+    <div class="figure">
+      <div class="figure-placeholder">
+        <div>
+      
+          <div>SIR Model</div>
+          <div style="font-size: 12px; color: #bbb; margin-top: 4px;">Replace</div>
+        </div>
+      </div>
+      <div class="figure-caption"><strong>Figure 1.</strong>Blank.</div>
+    </div>
+
+    <p>The transmission rate is the probability that a contact between an infectious and susceptible person results in infection, and it is a key rate in SIR models. In a school, this rate is naturally high. Kids are tightly grouped in classrooms and extracurricular spaces, and younger children are still developing effective hygiene habits. A single sick child on Monday can mean a dozen sick children by Friday.</p>
+
+ 
+    <h2>Schools Are Uniquely Vulnerable</h2>
+    <p>Schools concentrate large numbers of children into small, shared spaces for hours at a time. A typical elementary classroom might have 20 to 30 students interacting in close proximity throughout the day. They share art supplies, toys, and communal lunch tables. Each of these moments is an opportunity for the disease to transfer.</p>
+    <p>Unlike adults in workplaces, young children are less likely to cover their coughs properly, wash their hands without prompting, or even recognize when they're contagious. This makes school environments especially efficient at spreading illness.
+</p>
+
+    
+    <div class="figure">
+      <div class="figure-placeholder">
+        <div>
+         
+          <div>illustration here</div>
+          <div style="font-size: 12px; color: #bbb; margin-top: 4px;">Replace</div>
+        </div>
+      </div>
+      
+      <div class="figure-caption"><strong>Figure 2.</strong> Blank</div>
+    </div>
+
+  //figure
+    <h2>Handwashing's Impact</h2>
+    <p>The <a href="https://www.cdc.gov/handwashing/about/index.html" target="_blank">CDC reports</a> that proper handwashing can prevent about 30% of diarrhea-related illnesses and about 20% of respiratory infections like colds. The method is straightforward: soap, clean water, and twenty seconds of scrubbing, about the time to sing “happy birthday” twice. Hand drying matters too, since wet hands are more prone to spreading germs than dry ones.</p>
+    <p>When schools actively teach and encourage handwashing, like before lunch, after recess, and when using the bathroom, the effect compounds across the entire population. When fewer children become infectious, there are fewer opportunities for the disease to spread to others. The transmission rate drops, the infection curve flattens, and fewer students become sick at the same time. The SIR model displays this;  even a minor reduction in transmission has an outsized effect on total infections.</p>
+
+   
+    <h2>On Display</h2>
+    <p>The simulation below models a day at an elementary school utilizing an SIR framework. Before starting the day, the school's handwashing policy can be changed by toggling key moments: before lunch, after recess, and throughout the day. Then, watch as one sick student moves through the schedule alongside their classmates. When students walk through the hallway between periods, children from different classrooms mix for the first time. This creates new opportunities for the illness to spread. Try simulating with no handwashing stations active, then reset and turn them all on. Notice how the infection curve flattens and how many fewer students end up sick by the end of the day.</p>
+
+   
+    <div id="simulation-container"></div>
+
+   
+    <h2>Small Habits, Big Impact</h2>
+    <p>Disease spreading within the schools might be inevitable, but there are ways to greatly diminish the impact it has. When you reduce the transmission rate through something as basic as handwashing, it can protect individual students and the overall community by reducing the speed of infection. Teaching kids proper hygiene skills is one of the most cost-effective public health interventions available. Understanding why it works, with models like SIR, helps us appreciate just how much small, consistent habits can reshape an outbreak.</p>
+
+   
+    <div class="sources">
+      <h2>Sources</h2>
+      <ul>
+        <li><a href="https://www.cdc.gov/handwashing/about/index.html" target="_blank">CDC — Handwashing: Clean Hands Save Lives</a></li>
+        <li><a href="https://www.cdc.gov/mathematical-modeling/php/about/index.html" target="_blank">CDC — Compartmental Models in Epidemiology</a></li>
+        <li><a href="https://en.wikipedia.org/wiki/Compartmental_models_in_epidemiology#The_SIR_model" target="_blank">Wikipedia — SIR Model</a></li>
+        <li><a href="https://www.youtube.com/watch?v=gxAaO2rsdIs" target="_blank">3Blue1Brown — Simulating an Epidemic (YouTube)</a></li>
+        <li><a href="https://meltingasphalt.com/interactive/going-critical/" target="_blank">Kevin Simler — Going Critical</a></li>
+      </ul>
+    </div>
+  </div>
+
+
+  
+  <script>
+  (function() {
+    'use strict';
+
+    // ── Constants ──
+    const ROOMS = [
+      { id:"classroom1", label:"Room 101", x:20, y:30, w:160, h:130, color:"#EDE3D0", type:"classroom", doorX:100, doorY:160 },
+      { id:"classroom2", label:"Room 102", x:200, y:30, w:160, h:130, color:"#EDE3D0", type:"classroom", doorX:280, doorY:160 },
+      { id:"classroom3", label:"Room 103", x:380, y:30, w:160, h:130, color:"#EDE3D0", type:"classroom", doorX:460, doorY:160 },
+      { id:"hallway", label:"Hallway", x:20, y:175, w:520, h:45, color:"#D9CEBB", type:"hallway", doorX:280, doorY:197 },
+      { id:"cafeteria", label:"Cafeteria", x:20, y:235, w:250, h:150, color:"#D1DBBE", type:"cafeteria", doorX:145, doorY:235 },
+      { id:"playground", label:"Playground", x:290, y:235, w:250, h:150, color:"#B5D1A0", type:"playground", doorX:415, doorY:235 },
+    ];
+    const HALLWAY = ROOMS.find(r => r.id === "hallway");
+    const SCHEDULE = [
+      { name:"Morning Class", room:"classroom", duration:300, icon:"📚", time:"8:00 AM" },
+      { name:"Lunch", room:"cafeteria", duration:200, icon:"🍎", time:"11:30 AM" },
+      { name:"Recess", room:"playground", duration:200, icon:"⚽", time:"12:15 PM" },
+      { name:"Afternoon Class", room:"classroom", duration:300, icon:"✏️", time:"1:00 PM" },
+    ];
+    const COLORS = { susceptible:"#4CAF50", infectious:"#E53935", recovered:"#7986CB" };
+    const INF_RADIUS = 20, BASE_TX = 0.018, RECOVERY = 420, N = 36, TRANS_TICKS = 60, WALK_SPD = 2.2;
+
+    // ── State ──
+    let students = [], tick = 0, period = 0, speed = 1;
+    let running = false, dayDone = false, transitioning = false;
+    let sirHist = [], infEvents = [];
+    let wash = { before_lunch: false, after_recess: false, after_bathroom: false };
+    let animId = null, lastTime = 0;
+    const totalTicks = SCHEDULE.reduce((s,p) => s+p.duration, 0) + TRANS_TICKS * 3;
+
+    // ── Helpers ──
+    const clamp = (v,lo,hi) => Math.max(lo, Math.min(hi, v));
+    const rng = (a,b) => a + Math.random() * (b - a);
+
+    function getRoom(s, roomType) {
+      if (roomType === "classroom") {
+        const c = ROOMS.filter(r => r.type === "classroom");
+        return c[s.classroomIdx % c.length];
+      }
+      return ROOMS.find(r => r.type === roomType);
+    }
+
+    function buildWaypoints(s, dest) {
+      const wps = [];
+      const cur = ROOMS.find(r => r.type !== "hallway" && s.x >= r.x-5 && s.x <= r.x+r.w+5 && s.y >= r.y-5 && s.y <= r.y+r.h+5);
+      if (cur) wps.push({ x: cur.doorX + rng(-5,5), y: cur.doorY });
+      const hcy = HALLWAY.y + HALLWAY.h/2;
+      wps.push({ x: (cur ? cur.doorX : s.x) + rng(-5,5), y: hcy });
+      wps.push({ x: dest.doorX + rng(-5,5), y: hcy });
+      wps.push({ x: dest.doorX + rng(-5,5), y: dest.doorY });
+      wps.push({ x: dest.x + 20 + Math.random()*(dest.w-40), y: dest.y + 25 + Math.random()*(dest.h-45) });
+      return wps;
+    }
+
+    function initStudents() {
+      students = [];
+      const cls = ROOMS.filter(r => r.type === "classroom");
+      for (let i = 0; i < N; i++) {
+        const ci = i % cls.length, rm = cls[ci];
+        students.push({
+          id:i, x: rm.x+20+Math.random()*(rm.w-40), y: rm.y+25+Math.random()*(rm.h-45),
+          vx: rng(-0.25,0.25), vy: rng(-0.25,0.25), status:"susceptible",
+          infTimer:0, classroomIdx:ci, justInf:0,
+          trans:false, wps:[], wpIdx:0,
+        });
+      }
+      const p0 = Math.floor(Math.random() * N);
+      students[p0].status = "infectious";
+      students[p0].infTimer = RECOVERY;
+    }
+
+    // ── SVG Rendering ──
+    const svgNS = "http://www.w3.org/2000/svg";
+    const container = document.getElementById("simulation-container");
+
+    function el(tag, attrs, parent) {
+      const e = document.createElementNS(svgNS, tag);
+      for (const [k,v] of Object.entries(attrs||{})) e.setAttribute(k, v);
+      if (parent) parent.appendChild(e);
+      return e;
+    }
+    function div(cls, parent) {
+      const d = document.createElement("div");
+      if (cls) d.className = cls;
+      if (parent) parent.appendChild(d);
+      return d;
+    }
+    function btn(text, cls, parent, onClick) {
+      const b = document.createElement("button");
+      b.textContent = text; b.className = cls || "";
+      if (parent) parent.appendChild(b);
+      if (onClick) b.addEventListener("click", onClick);
+      return b;
+    }
+
+    // Build DOM
+    const simWrap = div("sim-wrapper", container);
+
+    // Title
+    const titleEl = document.createElement("div");
+    titleEl.className = "sim-title";
+    titleEl.textContent = "A Day at Maple Grove Elementary";
+    simWrap.appendChild(titleEl);
+    const descEl = document.createElement("p");
+    descEl.className = "sim-desc";
+    descEl.textContent = "One student arrives sick today. Set your school's handwashing policy, then start the day and watch how the illness moves from room to room.";
+    simWrap.appendChild(descEl);
+
+    // Wash toggles
+    const washLabelEl = div("wash-label", simWrap);
+    washLabelEl.innerHTML = '🧼 Handwashing Policy';
+    const washRow = div("wash-row", simWrap);
+    const washBtns = {};
+    const WASH_DATA = [
+      { id:"before_lunch", label:"Before Lunch", desc:"Reduces cafeteria transmission" },
+      { id:"after_recess", label:"After Recess", desc:"Reduces afternoon class transmission" },
+      { id:"after_bathroom", label:"Throughout Day", desc:"Ongoing hygiene reduces all transmission" },
+    ];
+    WASH_DATA.forEach(w => {
+      const b = div("wash-btn", washRow);
+      b.innerHTML = `<div class="icon">🚰</div><div class="label">${w.label}</div><div class="desc">${w.desc}</div>`;
+      b.addEventListener("click", () => {
+        if (tick > 0) return;
+        wash[w.id] = !wash[w.id];
+        renderWash();
+      });
+      washBtns[w.id] = b;
+    });
+
+    function renderWash() {
+      const locked = tick > 0;
+      washLabelEl.innerHTML = '🧼 Handwashing Policy' + (locked ? ' <span>(reset to change)</span>' : '');
+      WASH_DATA.forEach(w => {
+        const b = washBtns[w.id];
+        b.className = "wash-btn" + (wash[w.id] ? " active" : "") + (locked ? " disabled" : "");
+        b.querySelector(".icon").textContent = wash[w.id] ? "🧼" : "🚰";
+      });
+    }
+
+    // SVG floor plan
+    const svg = document.createElementNS(svgNS, "svg");
+    svg.setAttribute("viewBox", "0 0 560 400");
+    svg.className.baseVal = "floor-plan";
+    simWrap.appendChild(svg);
+
+    // Defs
+    const defs = el("defs", {}, svg);
+    const grassPat = el("pattern", { id:"simgrass", patternUnits:"userSpaceOnUse", width:8, height:8 }, defs);
+    el("circle", { cx:2, cy:2, r:0.6, fill:"#a3c484", opacity:0.4 }, grassPat);
+    el("circle", { cx:6, cy:6, r:0.4, fill:"#a3c484", opacity:0.3 }, grassPat);
+    const tilePat = el("pattern", { id:"simtile", patternUnits:"userSpaceOnUse", width:15, height:15 }, defs);
+    el("rect", { width:15, height:15, fill:"#D9CEBB" }, tilePat);
+    el("rect", { x:0, y:0, width:14, height:14, fill:"#DDD2BF", rx:0.5 }, tilePat);
+
+    // Static room backgrounds
+    const roomHighlights = {};
+    ROOMS.forEach(r => {
+      el("rect", { x:r.x, y:r.y, width:r.w, height:r.h, rx:8, fill:r.color, stroke:"#C4B99A", "stroke-width":1.5 }, svg);
+      if (r.type === "playground") el("rect", { x:r.x, y:r.y, width:r.w, height:r.h, rx:8, fill:"url(#simgrass)" }, svg);
+      if (r.type === "hallway") el("rect", { x:r.x, y:r.y, width:r.w, height:r.h, rx:8, fill:"url(#simtile)" }, svg);
+      el("text", { x:r.x+r.w/2, y:r.y+16, "text-anchor":"middle", "font-size":10, "font-weight":600, fill:"#8A7E6A", "font-family":"Libre Franklin, sans-serif" }, svg).textContent = r.label;
+      const hl = el("rect", { x:r.x, y:r.y, width:r.w, height:r.h, rx:8, fill:"none", stroke:"#FF9800", "stroke-width":2.5, "stroke-dasharray":"8 4", opacity:0 }, svg);
+      roomHighlights[r.id] = hl;
+    });
+
+    // Furniture (static, low opacity)
+    const furnitureG = el("g", { opacity: 0.3 }, svg);
+    ROOMS.filter(r => r.type === "classroom").forEach(rm => {
+      [0,1,2].forEach(row => {
+        [[25,42],[56,42],[rm.w-51,42],[rm.w-82,42]].forEach(([ox,oy]) => {
+          el("rect", { x:rm.x+ox, y:rm.y+oy+row*28, width:26, height:13, rx:2, fill:"#C4A882", stroke:"#B09870", "stroke-width":0.5 }, furnitureG);
+        });
+      });
+      el("rect", { x:rm.x+rm.w/2-18, y:rm.y+20, width:36, height:11, rx:2, fill:"#A08060", stroke:"#8A6C50", "stroke-width":0.5 }, furnitureG);
+      el("rect", { x:rm.doorX-6, y:rm.y+rm.h-3, width:12, height:6, rx:1, fill:"#D9CEBB", stroke:"#C4B99A", "stroke-width":0.5 }, furnitureG);
+    });
+    el("rect", { x:ROOMS[4].doorX-6, y:ROOMS[4].y-3, width:12, height:6, rx:1, fill:"#D9CEBB", stroke:"#C4B99A", "stroke-width":0.5 }, furnitureG);
+    el("rect", { x:ROOMS[5].doorX-6, y:ROOMS[5].y-3, width:12, height:6, rx:1, fill:"#D9CEBB", stroke:"#C4B99A", "stroke-width":0.5 }, furnitureG);
+    [0,1,2].forEach(i => {
+      el("rect", { x:50+i*70, y:278, width:50, height:16, rx:8, fill:"#A9B89A", stroke:"#8EA07E", "stroke-width":0.5 }, furnitureG);
+      el("rect", { x:50+i*70, y:333, width:50, height:16, rx:8, fill:"#A9B89A", stroke:"#8EA07E", "stroke-width":0.5 }, furnitureG);
+    });
+    el("circle", { cx:370, cy:293, r:16, fill:"none", stroke:"#7DAF5E", "stroke-width":1.5, "stroke-dasharray":"4 3" }, furnitureG);
+    el("rect", { x:430, y:312, width:36, height:5, rx:2.5, fill:"#7DAF5E" }, furnitureG);
+
+    // Wash indicators on map
+    const washMapBefore = el("g", { opacity: 0 }, svg);
+    el("rect", { x:120, y:213, width:28, height:12, rx:6, fill:"#2E7D32", opacity:0.75 }, washMapBefore);
+    el("text", { x:134, y:222, "text-anchor":"middle", "font-size":7, fill:"white" }, washMapBefore).textContent = "🧼";
+    const washMapAfter = el("g", { opacity: 0 }, svg);
+    el("rect", { x:400, y:213, width:28, height:12, rx:6, fill:"#2E7D32", opacity:0.75 }, washMapAfter);
+    el("text", { x:414, y:222, "text-anchor":"middle", "font-size":7, fill:"white" }, washMapAfter).textContent = "🧼";
+
+    // Infection events layer
+    const evtLayer = el("g", {}, svg);
+
+    // Student dots
+    const dotLayer = el("g", {}, svg);
+    const dotEls = [], auraEls = [];
+    for (let i = 0; i < N; i++) {
+      const a = el("circle", { r:0, fill:COLORS.infectious, opacity:0.07 }, dotLayer);
+      auraEls.push(a);
+      const c = el("circle", { r:5.5, fill:COLORS.susceptible, stroke:"rgba(255,255,255,0.5)", "stroke-width":1 }, dotLayer);
+      dotEls.push(c);
+    }
+
+    // Transition banner
+    const transBanner = div("transition-banner", simWrap);
+    transBanner.style.display = "none";
+
+    // Timeline
+    const timelineDiv = div("", simWrap);
+    timelineDiv.style.marginBottom = "14px";
+    const tlHeader = div("timeline-header", timelineDiv);
+    const tlPeriod = document.createElement("span"); tlPeriod.className = "timeline-period"; tlHeader.appendChild(tlPeriod);
+    const tlTime = document.createElement("span"); tlTime.className = "timeline-time"; tlHeader.appendChild(tlTime);
+    const tlBar = div("timeline-bar", timelineDiv);
+    const tlFill = div("timeline-fill", tlBar);
+    const tlLabels = div("timeline-labels", timelineDiv);
+    SCHEDULE.forEach((p,i) => {
+      const sp = document.createElement("span");
+      sp.textContent = p.icon + " " + p.name;
+      sp.dataset.idx = i;
+      tlLabels.appendChild(sp);
+    });
+
+    // Controls
+    const ctrlRow = div("controls-row", simWrap);
+    const mainBtn = btn("▶ Start the Day", "btn-primary start", ctrlRow);
+    const resetBtn = btn("Reset", "btn-secondary", ctrlRow);
+    const speedGroup = div("speed-group", ctrlRow);
+    const speedLbl = document.createElement("span"); speedLbl.className = "speed-label"; speedLbl.textContent = "Speed"; speedGroup.appendChild(speedLbl);
+    const speedBtns = [1,2,3].map(s => {
+      const b = btn(s+"x", "speed-btn" + (s===1?" active":""), speedGroup);
+      b.addEventListener("click", () => { speed = s; renderSpeed(); });
+      return b;
+    });
+
+    function renderSpeed() {
+      speedBtns.forEach((b,i) => b.className = "speed-btn" + (speed === i+1 ? " active" : ""));
+    }
+
+    // Counters
+    const countersDiv = div("counters", simWrap);
+    const counterData = [
+      { key:"s", label:"Healthy", color:COLORS.susceptible, emoji:"💚" },
+      { key:"i", label:"Sick", color:COLORS.infectious, emoji:"🤒" },
+      { key:"r", label:"Recovered", color:COLORS.recovered, emoji:"💙" },
+    ];
+    const counterEls = {};
+    counterData.forEach(c => {
+      const d = div("counter", countersDiv);
+      d.style.background = c.color + "0D";
+      d.style.border = "1.5px solid " + c.color + "25";
+      d.innerHTML = `<div class="emoji">${c.emoji}</div><div class="value" style="color:${c.color}">0</div><div class="label">${c.label}</div>`;
+      counterEls[c.key] = d.querySelector(".value");
+    });
+
+    // SIR Curve
+    const sirCard = div("sir-card", simWrap);
+    const sirTitleEl = div("sir-title", sirCard);
+    sirTitleEl.textContent = "Infection Curve Over the School Day";
+    const sirSvg = document.createElementNS(svgNS, "svg");
+    sirSvg.setAttribute("viewBox", "0 0 500 140");
+    sirSvg.style.width = "100%";
+    sirSvg.style.display = "block";
+    sirCard.appendChild(sirSvg);
+    [0,35,70,105,140].forEach(y => {
+      el("line", { x1:0, y1:y, x2:500, y2:y, stroke:"#f5f3ee", "stroke-width":0.8 }, sirSvg);
+    });
+    const sirPaths = {};
+    const sirAreas = {};
+    ["s","i","r"].forEach(k => {
+      const color = k==="s" ? COLORS.susceptible : k==="i" ? COLORS.infectious : COLORS.recovered;
+      sirAreas[k] = el("path", { d:"", fill:color, opacity:0.06 }, sirSvg);
+      sirPaths[k] = el("path", { d:"", fill:"none", stroke:color, "stroke-width":2.2, "stroke-linecap":"round", "stroke-linejoin":"round" }, sirSvg);
+    });
+    el("text", { x:0, y:137, "font-size":8, fill:"#ccc", "font-family":"Libre Franklin, sans-serif" }, sirSvg).textContent = "0";
+    el("text", { x:0, y:12, "font-size":8, fill:"#ccc", "font-family":"Libre Franklin, sans-serif" }, sirSvg).textContent = N.toString();
+
+    const sirLegend = div("sir-legend", sirCard);
+    [{ l:"Healthy", c:COLORS.susceptible },{ l:"Sick", c:COLORS.infectious },{ l:"Recovered", c:COLORS.recovered }].forEach(item => {
+      const d = div("sir-legend-item", sirLegend);
+      d.innerHTML = `<div class="sir-legend-dot" style="background:${item.c}"></div>${item.l}`;
+    });
+
+    // Report card
+    const reportDiv = div("report", simWrap);
+    reportDiv.style.display = "none";
+
+    // Footnote
+    const footnote = document.createElement("p");
+    footnote.className = "sim-footnote";
+    footnote.textContent = "Simplified SIR simulation for educational purposes. Transmission rates are illustrative, not clinically precise.";
+    simWrap.appendChild(footnote);
+
+    // ── Controls ──
+    mainBtn.addEventListener("click", () => {
+      if (dayDone) { doReset(); return; }
+      running = !running;
+      if (running) { lastTime = 0; animId = requestAnimationFrame(simLoop); }
+      else if (animId) { cancelAnimationFrame(animId); animId = null; }
+      renderControls();
+    });
+
+    resetBtn.addEventListener("click", doReset);
+
+    function doReset() {
+      if (animId) { cancelAnimationFrame(animId); animId = null; }
+      running = false; dayDone = false; transitioning = false;
+      tick = 0; period = 0; sirHist = []; infEvents = [];
+      initStudents();
+      reportDiv.style.display = "none";
+      renderAll();
+    }
+
+    function renderControls() {
+      if (dayDone) {
+        mainBtn.textContent = "↻ New Day";
+        mainBtn.className = "btn-primary done";
+      } else if (running) {
+        mainBtn.textContent = "⏸ Pause";
+        mainBtn.className = "btn-primary pause";
+      } else {
+        mainBtn.textContent = tick === 0 ? "▶ Start the Day" : "▶ Resume";
+        mainBtn.className = "btn-primary start";
+      }
+    }
+
+    // ── Simulation Loop ──
+    function simLoop(timestamp) {
+      if (dayDone) { running = false; renderControls(); return; }
+
+      const interval = speed === 1 ? 50 : speed === 2 ? 28 : 16;
+      if (timestamp - lastTime < interval) { animId = requestAnimationFrame(simLoop); return; }
+      lastTime = timestamp;
+
+      const steps = speed === 3 ? 2 : 1;
+      for (let step = 0; step < steps; step++) {
+        // Check transition complete
+        if (transitioning && !students.some(s => s.trans)) transitioning = false;
+
+        const roomType = SCHEDULE[period]?.room || "classroom";
+
+        // Move students
+        students.forEach(s => {
+          if (s.trans) {
+            if (s.wpIdx < s.wps.length) {
+              const wp = s.wps[s.wpIdx];
+              const dx = wp.x - s.x, dy = wp.y - s.y;
+              const d = Math.sqrt(dx*dx + dy*dy);
+              if (d < 3) { s.x = wp.x; s.y = wp.y; s.wpIdx++; s.vx = 0; s.vy = 0; }
+              else {
+                const sp = Math.min(WALK_SPD, d*0.15+0.5);
+                s.vx = (dx/d)*sp + rng(-0.1,0.1);
+                s.vy = (dy/d)*sp + rng(-0.1,0.1);
+                s.x += s.vx; s.y += s.vy;
+              }
+            } else {
+              s.trans = false; s.wps = []; s.wpIdx = 0;
+              s.vx = rng(-0.15,0.15); s.vy = rng(-0.15,0.15);
+            }
+          } else {
+            const rm = getRoom(s, roomType);
+            const m = 12, mnX = rm.x+m, mxX = rm.x+rm.w-m, mnY = rm.y+22, mxY = rm.y+rm.h-m;
+            if (s.x < mnX+5) s.vx += 0.1; if (s.x > mxX-5) s.vx -= 0.1;
+            if (s.y < mnY+5) s.vy += 0.1; if (s.y > mxY-5) s.vy -= 0.1;
+            s.vx += rng(-0.06,0.06); s.vy += rng(-0.06,0.06);
+            s.vx *= 0.95; s.vy *= 0.95;
+            const sp = Math.sqrt(s.vx*s.vx + s.vy*s.vy);
+            const mx = roomType === "playground" ? 0.8 : 0.45;
+            if (sp > mx) { s.vx = (s.vx/sp)*mx; s.vy = (s.vy/sp)*mx; }
+            s.x = clamp(s.x+s.vx, mnX, mxX);
+            s.y = clamp(s.y+s.vy, mnY, mxY);
+          }
+          if (s.status === "infectious") { s.infTimer--; if (s.infTimer <= 0) s.status = "recovered"; }
+          if (s.justInf > 0) s.justInf--;
+        });
+
+        // Infection
+        let wr = 1;
+        if (wash.before_lunch && roomType === "cafeteria") wr *= 0.6;
+        if (wash.after_recess && period === 3) wr *= 0.7;
+        if (wash.after_bathroom) wr *= 0.8;
+
+        for (let i = 0; i < N; i++) {
+          if (students[i].status !== "infectious") continue;
+          for (let j = 0; j < N; j++) {
+            if (students[j].status !== "susceptible") continue;
+            const dx = students[i].x - students[j].x, dy = students[i].y - students[j].y;
+            if (dx*dx + dy*dy < INF_RADIUS*INF_RADIUS) {
+              const den = transitioning ? 1.2 : (roomType === "cafeteria" ? 1.8 : roomType === "playground" ? 0.5 : 1.0);
+              if (Math.random() < BASE_TX * den * wr) {
+                students[j].status = "infectious";
+                students[j].infTimer = RECOVERY + Math.floor(rng(-40,40));
+                students[j].justInf = 30;
+              }
+            }
+          }
+        }
+      }
+
+      tick += steps;
+
+      // Period transitions
+      let boundary = 0;
+      for (let p = 0; p <= period; p++) {
+        if (p > 0) boundary += TRANS_TICKS;
+        if (p < period) boundary += SCHEDULE[p].duration;
+      }
+      const pTick = tick - boundary;
+
+      if (!transitioning && period < SCHEDULE.length && pTick >= SCHEDULE[period].duration) {
+        if (period + 1 >= SCHEDULE.length) {
+          dayDone = true; running = false;
+          renderAll(); renderControls();
+          showReport();
+          return;
+        }
+        transitioning = true;
+        period++;
+        const destType = SCHEDULE[period].room;
+        students.forEach(s => {
+          const dest = getRoom(s, destType);
+          s.wps = buildWaypoints(s, dest);
+          s.wpIdx = 0; s.trans = true; s.vx = 0; s.vy = 0;
+        });
+      }
+
+      // SIR history
+      if (tick % 6 === 0) {
+        const c = {s:0,i:0,r:0};
+        students.forEach(s => { if(s.status==="susceptible") c.s++; else if(s.status==="infectious") c.i++; else c.r++; });
+        sirHist.push(c);
+      }
+
+      renderAll();
+      animId = requestAnimationFrame(simLoop);
+    }
+
+    // ── Render ──
+    function renderAll() {
+      // Dots
+      students.forEach((s,i) => {
+        dotEls[i].setAttribute("cx", s.x);
+        dotEls[i].setAttribute("cy", s.y);
+        dotEls[i].setAttribute("fill", COLORS[s.status]);
+        dotEls[i].setAttribute("r", s.justInf > 0 ? 7 : 5.5);
+        dotEls[i].setAttribute("stroke", s.justInf > 0 ? "#FFEB3B" : "rgba(255,255,255,0.5)");
+        dotEls[i].setAttribute("stroke-width", s.justInf > 0 ? 2 : 1);
+        auraEls[i].setAttribute("cx", s.x);
+        auraEls[i].setAttribute("cy", s.y);
+        auraEls[i].setAttribute("r", s.status === "infectious" && !s.trans ? INF_RADIUS*0.55 : 0);
+      });
+
+      // Room highlights
+      ROOMS.forEach(r => {
+        let show = false;
+        if (transitioning && r.type === "hallway") show = true;
+        else if (!transitioning && SCHEDULE[period] && (SCHEDULE[period].room === r.type || (SCHEDULE[period].room === "classroom" && r.type === "classroom"))) show = true;
+        roomHighlights[r.id].setAttribute("opacity", show ? 1 : 0);
+        if (show) {
+          roomHighlights[r.id].innerHTML = `<animate attributeName="stroke-opacity" values="1;0.3;1" dur="${transitioning?'1.5':'2.5'}s" repeatCount="indefinite" />`;
+        }
+      });
+
+      // Wash map indicators
+      washMapBefore.setAttribute("opacity", wash.before_lunch ? 1 : 0);
+      washMapAfter.setAttribute("opacity", wash.after_recess ? 1 : 0);
+
+      // Transition banner
+      transBanner.style.display = transitioning ? "block" : "none";
+      if (transitioning) transBanner.textContent = "🚶 Students moving to " + (SCHEDULE[period]?.name || "") + "...";
+
+      // Timeline
+      const progress = Math.min(tick / totalTicks, 1);
+      const pIcon = SCHEDULE[period]?.icon || "🏁";
+      const pName = SCHEDULE[period]?.name || "Day Over";
+      const pTime = SCHEDULE[period]?.time || "3:00 PM";
+      tlPeriod.textContent = dayDone ? "🏁 Day Complete" : transitioning ? "🚶 Transition" : pIcon + " " + pName;
+      tlTime.textContent = (dayDone ? "3:00 PM" : pTime) + " · " + Math.round(progress*100) + "%";
+      tlFill.style.width = (progress*100) + "%";
+      tlFill.className = "timeline-fill" + (transitioning ? " transitioning" : "");
+      Array.from(tlLabels.children).forEach((sp,i) => {
+        sp.className = (i === period && !dayDone) ? "active" : "";
+      });
+
+      // Counters
+      const cnt = {s:0,i:0,r:0};
+      students.forEach(s => { if(s.status==="susceptible") cnt.s++; else if(s.status==="infectious") cnt.i++; else cnt.r++; });
+      counterEls.s.textContent = cnt.s;
+      counterEls.i.textContent = cnt.i;
+      counterEls.r.textContent = cnt.r;
+
+      // SIR curves
+      if (sirHist.length > 1) {
+        ["s","i","r"].forEach(k => {
+          const pts = sirHist.map((h,idx) => {
+            const x = (idx / (sirHist.length-1)) * 500;
+            const y = 130 - (h[k]/N)*120;
+            return x+","+y;
+          });
+          const d = "M" + pts.join(" L");
+          sirPaths[k].setAttribute("d", d);
+          const lastX = ((sirHist.length-1)/(sirHist.length-1))*500;
+          sirAreas[k].setAttribute("d", d + " L"+lastX+",140 L0,140 Z");
+        });
+      }
+
+      renderWash();
+      renderControls();
+    }
+
+    function showReport() {
+      const cnt = {s:0,i:0,r:0};
+      students.forEach(s => { if(s.status==="susceptible") cnt.s++; else if(s.status==="infectious") cnt.i++; else cnt.r++; });
+      const total = Math.max(0, cnt.i + cnt.r - 1);
+      const washCount = Object.values(wash).filter(Boolean).length;
+      const color = total <= 5 ? "#2E7D32" : total <= 15 ? "#F57F17" : "#C62828";
+      const bg = total <= 5 ? "#E8F5E9" : total <= 15 ? "#FFF8E1" : "#FFEBEE";
+      const border = total <= 5 ? "#A5D6A7" : total <= 15 ? "#FFE082" : "#EF9A9A";
+
+      let hint = "";
+      if (washCount === 0) hint = "No handwashing stations were active. Try turning some on!";
+      else if (washCount < 3) hint = washCount + " of 3 stations active. What happens with all three?";
+      else hint = "All handwashing stations active! Compare this to a run with none. 🧼";
+
+      reportDiv.style.display = "block";
+      reportDiv.style.background = bg;
+      reportDiv.style.border = "2px solid " + border;
+      reportDiv.innerHTML = `
+        <div class="report-title">📋 End-of-Day Report</div>
+        <div class="report-count" style="color:${color}">${total} of ${N} students</div>
+        <div class="report-sub">caught the illness today</div>
+        <div class="report-hint">${hint}</div>
+      `;
+    }
+
+    // ── Init ──
+    initStudents();
+    renderAll();
+  })();
+  </script>
+</body>
+</html>
