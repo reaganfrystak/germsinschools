@@ -31,14 +31,14 @@
       -webkit-font-smoothing: antialiased;
     }
 
-
+    /* ── Layout ── */
     .page {
       max-width: 680px;
       margin: 0 auto;
       padding: 48px 24px 80px;
     }
 
-
+    /* ── Typography ── */
     h1 {
       font-family: var(--serif);
       font-size: clamp(28px, 5vw, 40px);
@@ -86,7 +86,7 @@
       color: #2a2a2a;
     }
 
-    
+    /* ── Figures ── */
     .figure {
       margin: 32px 0;
       border-radius: 14px;
@@ -126,12 +126,12 @@
       color: #555;
     }
 
-    
+    /* ── Interactive simulation container ── */
     #simulation-container {
       margin: 32px 0;
     }
 
-
+    /* ── Simulation styles ── */
     .sim-wrapper {
       max-width: 100%;
       padding: 0;
@@ -310,7 +310,7 @@
       line-height: 1.5;
     }
 
-
+    /* ── Sources ── */
     .sources {
       margin-top: 48px;
       padding-top: 24px;
@@ -335,7 +335,7 @@
       color: #bbb;
     }
 
-
+    /* ── Responsive ── */
     @media (max-width: 500px) {
       .page { padding: 32px 16px 60px; }
       .wash-btn { min-width: 100px; padding: 10px 6px; }
@@ -346,70 +346,62 @@
 <body>
   <div class="page">
 
+    <!-- ═══════ HEADER ═══════ -->
+    <h1>How Handwashing Slows the Spread of Disease in Schools</h1>
+    <p class="subtitle">An explorable explanation of how a simple habit reshapes an outbreak.</p>
 
-    <h1>How Handwashing Slows the Spread of Diseases in Schools</h1>
-    <p class="subtitle">How the simple habit of handwashing can reshape outbreaks within schools.</p>
+    <!-- ═══════ SECTION 1 ═══════ -->
+    <h2>A Silent Threat in the Classroom</h2>
+    <p>Every school year, classrooms become hotbeds for infectious disease. Children sit close together, share supplies, touch the same surfaces, and — most critically — frequently touch their eyes, noses, and mouths throughout the day. Common illnesses like norovirus, salmonella, and respiratory infections such as adenovirus thrive in these conditions. The consequences aren't trivial: according to the <a href="https://www.cdc.gov/handwashing/about/index.html" target="_blank">CDC</a>, approximately 1.8 million children under the age of five die each year from diarrheal diseases and pneumonia worldwide. Schools don't just teach children — they also spread what children carry.</p>
 
+    <!-- ═══════ SECTION 2 ═══════ -->
+    <h2>How Disease Moves: The SIR Model</h2>
+    <p>To understand how an illness tears through a school, epidemiologists use a framework called the <strong>SIR model</strong>. It divides a population into three groups: <strong>Susceptible</strong> (healthy but at risk), <strong>Infectious</strong> (sick and contagious), and <strong>Recovered</strong> (no longer contagious). Every student starts in the Susceptible group. When an infectious student interacts with a susceptible one, there's a chance the disease transmits — moving that student into the Infectious group. After a period of illness, they move to Recovered.</p>
 
-    <h2>Classrooms & Germs</h2>
-    <p>Every school year, classrooms become hotbeds for diseases. Children sit close together, touch the same surfaces, and frequently touch their eyes, noses, and mouths throughout the day. Common illnesses like norovirus, salmonella, and respiratory infections, like adenovirus, thrive in these environments. The consequences aren't trivial: according to the <a href="https://www.cdc.gov/handwashing/about/index.html" target="_blank">CDC</a>, approximately 1.8 million children under the age of five die each year from diarrheal diseases and pneumonia worldwide.</p>
+    <!-- FIGURE 1: SIR Flow Diagram -->
+    <div class="figure">
+      <img src="images/sir-fig1.png" alt="Standard SIR model (Susceptible → Infectious → Recovered) compared with a complex SIR model that adds a Hospitalized compartment for 65+ adults infected with RSV." style="display:block;width:100%;height:auto;">
+      <div class="figure-caption"><strong>Figure 1.</strong> The standard SIR model moves a population through three states. More complex models add compartments — like a Hospitalized state for higher-risk groups — to capture real-world differences in outcomes.</div>
+    </div>
 
+    <p>The key variable is the <strong>transmission rate</strong>: how likely it is that a contact between an infectious and susceptible person results in infection. In a school, this rate is naturally high. Kids are packed into classrooms, they share cafeterias, and younger children haven't yet built strong hygiene habits. A single sick child on Monday can mean a dozen sick children by Friday.</p>
 
-    <h2>SIR Models & Disease Movements</h2>
-    <p>To understand how an illness tears through a school, epidemiologists use a framework called the SIR model. A population can be divided into three groups: Susceptible (healthy but at risk), "Infectious" (sick and contagious), and Recovered (no longer contagious). Every student starts in the “Susceptible” group. When an infectious student interacts with a susceptible one, there's a chance for the disease to transfer, making the other student "Infectious" as well. After the period of the illness is over, they can be moved to the “Recovered” category.</p>
+    <!-- ═══════ SECTION 3 ═══════ -->
+    <h2>Why Schools Are Uniquely Vulnerable</h2>
+    <p>Schools concentrate large numbers of children into small, shared spaces for hours at a time. A typical elementary classroom might have 20–30 students interacting in close proximity throughout the day. They pass papers, share art supplies, line up shoulder-to-shoulder, and eat lunch at communal tables. Each of these moments is a potential point of transmission.</p>
+    <p>Unlike adults in workplaces, young children are less likely to cover coughs effectively, wash hands without prompting, or recognize when they're symptomatic. This makes the school environment especially efficient at spreading illness — and especially important as a place to intervene.</p>
 
-   
+    <!-- FIGURE 2: Transmission Points (non-interactive — replace with your designed figure) -->
     <div class="figure">
       <div class="figure-placeholder">
         <div>
-      
-          <div>SIR Model</div>
-          <div style="font-size: 12px; color: #bbb; margin-top: 4px;">Replace</div>
+          <div style="font-size: 32px; margin-bottom: 8px;">🏫</div>
+          <div>Your School Transmission Points illustration goes here</div>
+          <div style="font-size: 12px; color: #bbb; margin-top: 4px;">Replace this with your manually designed figure</div>
         </div>
       </div>
-      <div class="figure-caption"><strong>Figure 1.</strong>Blank.</div>
+      <div class="figure-caption"><strong>Figure 2.</strong> Common transmission points during a school day: shared desks, cafeteria tables, playground equipment, and hallway traffic.</div>
     </div>
 
-    <p>The transmission rate is the probability that a contact between an infectious and susceptible person results in infection, and it is a key rate in SIR models. In a school, this rate is naturally high. Kids are tightly grouped in classrooms and extracurricular spaces, and younger children are still developing effective hygiene habits. A single sick child on Monday can mean a dozen sick children by Friday.</p>
+    <!-- ═══════ SECTION 4 ═══════ -->
+    <h2>The Handwashing Effect</h2>
+    <p>Here's where a remarkably simple intervention makes a measurable difference. The <a href="https://www.cdc.gov/handwashing/about/index.html" target="_blank">CDC reports</a> that proper handwashing can prevent roughly 30% of diarrhea-related illnesses and about 20% of respiratory infections like colds. The method is straightforward: soap, clean water, and twenty seconds of scrubbing — about the time it takes to hum "Happy Birthday" twice. Hand drying matters too, since wet hands transfer germs more easily than dry ones.</p>
+    <p>When schools actively teach and encourage handwashing — before lunch, after recess, after using the restroom — the effect compounds across the entire population. It's not just that individual children get sick less often. Because fewer children become infectious, there are fewer opportunities for the disease to spread to others. The transmission rate drops, the infection curve flattens, and fewer students are sick at the same time. The SIR model shows this clearly: even a modest reduction in transmission has an outsized effect on total infections.</p>
 
- 
-    <h2>Schools Are Uniquely Vulnerable</h2>
-    <p>Schools concentrate large numbers of children into small, shared spaces for hours at a time. A typical elementary classroom might have 20 to 30 students interacting in close proximity throughout the day. They share art supplies, toys, and communal lunch tables. Each of these moments is an opportunity for the disease to transfer.</p>
-    <p>Unlike adults in workplaces, young children are less likely to cover their coughs properly, wash their hands without prompting, or even recognize when they're contagious. This makes school environments especially efficient at spreading illness.
-</p>
+    <!-- ═══════ SECTION 5: INTERACTIVE ═══════ -->
+    <h2>See It for Yourself</h2>
+    <p>The simulation below models a full school week at an elementary school using the SIR framework. Before starting, you'll set the school's handwashing policy <em>and</em> home factors — the things that decide whether germs hitch a ride from home to school and back again. Then watch as one sick student moves through five school days alongside 35 classmates: morning class, lunch in the cafeteria, recess on the playground, afternoon class, and nights at home where new cases can quietly enter the population. Try running the week with no preventive measures, then reset and turn them all on. Notice how the infection curve flattens across the week and how many fewer students end up sick by Friday.</p>
 
-    
-    <div class="figure">
-      <div class="figure-placeholder">
-        <div>
-         
-          <div>illustration here</div>
-          <div style="font-size: 12px; color: #bbb; margin-top: 4px;">Replace</div>
-        </div>
-      </div>
-      
-      <div class="figure-caption"><strong>Figure 2.</strong> Blank</div>
-    </div>
-
-  //figure
-    <h2>Handwashing's Impact</h2>
-    <p>The <a href="https://www.cdc.gov/handwashing/about/index.html" target="_blank">CDC reports</a> that proper handwashing can prevent about 30% of diarrhea-related illnesses and about 20% of respiratory infections like colds. The method is straightforward: soap, clean water, and twenty seconds of scrubbing, about the time to sing “happy birthday” twice. Hand drying matters too, since wet hands are more prone to spreading germs than dry ones.</p>
-    <p>When schools actively teach and encourage handwashing, like before lunch, after recess, and when using the bathroom, the effect compounds across the entire population. When fewer children become infectious, there are fewer opportunities for the disease to spread to others. The transmission rate drops, the infection curve flattens, and fewer students become sick at the same time. The SIR model displays this;  even a minor reduction in transmission has an outsized effect on total infections.</p>
-
-   
-    <h2>On Display</h2>
-    <p>The simulation below models a day at an elementary school utilizing an SIR framework. Before starting the day, the school's handwashing policy can be changed by toggling key moments: before lunch, after recess, and throughout the day. Then, watch as one sick student moves through the schedule alongside their classmates. When students walk through the hallway between periods, children from different classrooms mix for the first time. This creates new opportunities for the illness to spread. Try simulating with no handwashing stations active, then reset and turn them all on. Notice how the infection curve flattens and how many fewer students end up sick by the end of the day.</p>
-
-   
+    <!-- ═══════ SIMULATION ═══════ -->
     <div id="simulation-container"></div>
 
-   
+    <!-- ═══════ SECTION 6 ═══════ -->
     <h2>Small Habits, Big Impact</h2>
-    <p>Disease spreading within the schools might be inevitable, but there are ways to greatly diminish the impact it has. When you reduce the transmission rate through something as basic as handwashing, it can protect individual students and the overall community by reducing the speed of infection. Teaching kids proper hygiene skills is one of the most cost-effective public health interventions available. Understanding why it works, with models like SIR, helps us appreciate just how much small, consistent habits can reshape an outbreak.</p>
+    <p>Disease spread in schools isn't inevitable — it's a system with variables that can be changed. The SIR model makes this visible: when you reduce the transmission rate through something as basic as handwashing, you don't just protect individual students. You protect the entire school community by slowing the chain of infection. Teaching children to wash their hands isn't just a hygiene lesson. It's one of the most cost-effective public health interventions available, and understanding <em>why</em> it works — through models like SIR — helps us appreciate just how much a small, consistent habit can reshape an outbreak.</p>
 
-   
+    <!-- ═══════ SOURCES ═══════ -->
     <div class="sources">
-      <h2>Sources</h2>
+      <h2>Sources &amp; Further Reading</h2>
       <ul>
         <li><a href="https://www.cdc.gov/handwashing/about/index.html" target="_blank">CDC — Handwashing: Clean Hands Save Lives</a></li>
         <li><a href="https://www.cdc.gov/mathematical-modeling/php/about/index.html" target="_blank">CDC — Compartmental Models in Epidemiology</a></li>
@@ -420,8 +412,9 @@
     </div>
   </div>
 
-
-  
+  <!-- ═══════════════════════════════════════════════════════ -->
+  <!-- SIMULATION SCRIPT — vanilla JS, no dependencies needed -->
+  <!-- ═══════════════════════════════════════════════════════ -->
   <script>
   (function() {
     'use strict';
@@ -436,22 +429,58 @@
       { id:"playground", label:"Playground", x:290, y:235, w:250, h:150, color:"#B5D1A0", type:"playground", doorX:415, doorY:235 },
     ];
     const HALLWAY = ROOMS.find(r => r.id === "hallway");
-    const SCHEDULE = [
-      { name:"Morning Class", room:"classroom", duration:300, icon:"📚", time:"8:00 AM" },
-      { name:"Lunch", room:"cafeteria", duration:200, icon:"🍎", time:"11:30 AM" },
-      { name:"Recess", room:"playground", duration:200, icon:"⚽", time:"12:15 PM" },
-      { name:"Afternoon Class", room:"classroom", duration:300, icon:"✏️", time:"1:00 PM" },
+    // Each period specifies where each of the 3 classrooms goes (by classroomIdx 0, 1, 2).
+    // This staggered schedule keeps the classes separated during the middle of the day —
+    // patient zero's class gets exposed first, other classes catch it through hallway
+    // mixing during transitions.
+    const PERIODS = [
+      { name:"Morning Class",   time:"8:00 AM",  icon:"📚", duration:140, rooms:["classroom","classroom","classroom"] },
+      { name:"Block A",         time:"10:30 AM", icon:"🔀", duration:110, rooms:["cafeteria","classroom","playground"] },
+      { name:"Block B",         time:"11:30 AM", icon:"🔀", duration:110, rooms:["playground","cafeteria","classroom"] },
+      { name:"Block C",         time:"12:30 PM", icon:"🔀", duration:110, rooms:["classroom","playground","cafeteria"] },
+      { name:"Afternoon Class", time:"1:45 PM",  icon:"✏️", duration:140, rooms:["classroom","classroom","classroom"] },
     ];
+    const AFTERNOON_PERIOD = PERIODS.length - 1;
+    const DAYS = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"];
+    const NIGHT_TICKS = 100;
     const COLORS = { susceptible:"#4CAF50", infectious:"#E53935", recovered:"#7986CB" };
-    const INF_RADIUS = 20, BASE_TX = 0.018, RECOVERY = 420, N = 36, TRANS_TICKS = 60, WALK_SPD = 2.2;
+    // Each disease sets its own transmission rate and recovery length. Picking
+    // a different illness reshapes the SIR curve at the bottom — a cold barely
+    // moves the needle, chickenpox takes out most of the school.
+    const DISEASES = [
+      { id:"cold", label:"Common Cold",  emoji:"🤧", desc:"Low virality · mild",            tx:0.00005, recovery:2400 },
+      { id:"flu",  label:"Seasonal Flu", emoji:"🤒", desc:"Moderate · multi-day",           tx:0.00012, recovery:3500 },
+      { id:"noro", label:"Norovirus",    emoji:"🤢", desc:"High virality · short illness",  tx:0.00035, recovery:1500 },
+      { id:"pox",  label:"Chickenpox",   emoji:"🫧", desc:"High virality · long illness",   tx:0.00025, recovery:5500 },
+    ];
+    const INF_RADIUS = 20, N = 36, TRANS_TICKS = 50, WALK_SPD = 2.2;
+    let BASE_TX = 0.00012, RECOVERY = 3500;
+    // Exposure model: students build up a "dose" while near infected peers. Dose
+    // decays when apart. Infection chance per tick ≈ BASE_TX × dose, so a brief
+    // brush-by is unlikely to infect but sustained proximity ramps the risk.
+    const EXPOSURE_CAP = 30, EXPOSURE_DECAY = 0.97, MIN_EXPOSURE = 8;
+    const DAY_TICKS = PERIODS.reduce((s,p) => s+p.duration, 0) + TRANS_TICKS * (PERIODS.length - 1) + NIGHT_TICKS;
+    const totalTicks = DAY_TICKS * DAYS.length;
+
+    // Returns the room type for a given student during a given period
+    const roomTypeFor = (s, p) => PERIODS[p].rooms[s.classroomIdx % 3];
 
     // ── State ──
-    let students = [], tick = 0, period = 0, speed = 1;
-    let running = false, dayDone = false, transitioning = false;
-    let sirHist = [], infEvents = [];
+    let students = [], tick = 0, period = 0, day = 0, speed = 1;
+    let phase = "period"; // "period" | "transition" | "night"
+    let phaseStartTick = 0, lastSirTick = -99;
+    let running = false, weekDone = false;
+    let sirHist = [];
+    let disease = "flu";
     let wash = { before_lunch: false, after_recess: false, after_bathroom: false };
+    let home = { stay_home: false, home_hygiene: false, community_spread: false };
     let animId = null, lastTime = 0;
-    const totalTicks = SCHEDULE.reduce((s,p) => s+p.duration, 0) + TRANS_TICKS * 3;
+
+    function applyDisease() {
+      const d = DISEASES.find(x => x.id === disease) || DISEASES[1];
+      BASE_TX = d.tx;
+      RECOVERY = d.recovery;
+    }
 
     // ── Helpers ──
     const clamp = (v,lo,hi) => Math.max(lo, Math.min(hi, v));
@@ -485,13 +514,52 @@
         students.push({
           id:i, x: rm.x+20+Math.random()*(rm.w-40), y: rm.y+25+Math.random()*(rm.h-45),
           vx: rng(-0.25,0.25), vy: rng(-0.25,0.25), status:"susceptible",
-          infTimer:0, classroomIdx:ci, justInf:0,
-          trans:false, wps:[], wpIdx:0,
+          infTimer:0, classroomIdx:ci, justInf:0, exposure:0,
+          trans:false, wps:[], wpIdx:0, at_home:false,
         });
       }
       const p0 = Math.floor(Math.random() * N);
       students[p0].status = "infectious";
       students[p0].infTimer = RECOVERY;
+    }
+
+    function processMorning() {
+      // Re-evaluate who stays home and reposition returning students
+      students.forEach(s => {
+        s.exposure = 0; // overnight clears yesterday's lingering dose
+        const shouldStayHome = home.stay_home && s.status === "infectious";
+        if (s.at_home && !shouldStayHome) {
+          const rm = getRoom(s, "classroom");
+          s.x = rm.x + 20 + Math.random() * (rm.w - 40);
+          s.y = rm.y + 25 + Math.random() * (rm.h - 45);
+          s.vx = rng(-0.15,0.15); s.vy = rng(-0.15,0.15);
+        }
+        s.at_home = shouldStayHome;
+        s.trans = false; s.wps = []; s.wpIdx = 0;
+      });
+    }
+
+    function applyNightInfections() {
+      if (!home.community_spread) return;
+      const baseRate = 0.035;
+      const rate = home.home_hygiene ? baseRate * 0.3 : baseRate;
+      students.forEach(s => {
+        if (s.status === "susceptible" && Math.random() < rate) {
+          s.status = "infectious";
+          s.infTimer = RECOVERY + Math.floor(rng(-40,40));
+          s.justInf = 30;
+        }
+      });
+    }
+
+    function startTransition() {
+      students.forEach(s => {
+        if (s.at_home) return;
+        const destType = roomTypeFor(s, period);
+        const dest = getRoom(s, destType);
+        s.wps = buildWaypoints(s, dest);
+        s.wpIdx = 0; s.trans = true; s.vx = 0; s.vy = 0;
+      });
     }
 
     // ── SVG Rendering ──
@@ -524,12 +592,40 @@
     // Title
     const titleEl = document.createElement("div");
     titleEl.className = "sim-title";
-    titleEl.textContent = "A Day at Maple Grove Elementary";
+    titleEl.textContent = "A Week at Maple Grove Elementary";
     simWrap.appendChild(titleEl);
     const descEl = document.createElement("p");
     descEl.className = "sim-desc";
-    descEl.textContent = "One student arrives sick today. Set your school's handwashing policy, then start the day and watch how the illness moves from room to room.";
+    descEl.textContent = "One student arrives sick on Monday. Pick the illness they brought, set the school's handwashing policy and home factors, then watch five school days unfold. Each classroom rotates through lunch and recess on its own staggered schedule — the disease you choose shapes how fast and how widely it spreads.";
     simWrap.appendChild(descEl);
+
+    // Disease picker (radio-style — only one active)
+    const diseaseLabelEl = div("wash-label", simWrap);
+    diseaseLabelEl.innerHTML = '🦠 Which illness did patient zero catch?';
+    const diseaseRow = div("wash-row", simWrap);
+    const diseaseBtns = {};
+    DISEASES.forEach(d => {
+      const b = div("wash-btn", diseaseRow);
+      b.innerHTML = `<div class="icon">${d.emoji}</div><div class="label">${d.label}</div><div class="desc">${d.desc}</div>`;
+      b.addEventListener("click", () => {
+        if (tick > 0) return;
+        disease = d.id;
+        applyDisease();
+        // Re-seed patient zero so the new RECOVERY takes effect before starting
+        students.forEach(s => { if (s.status === "infectious") s.infTimer = RECOVERY; });
+        renderDisease();
+      });
+      diseaseBtns[d.id] = b;
+    });
+
+    function renderDisease() {
+      const locked = tick > 0;
+      diseaseLabelEl.innerHTML = '🦠 Which illness did patient zero catch?' + (locked ? ' <span>(reset to change)</span>' : '');
+      DISEASES.forEach(d => {
+        const b = diseaseBtns[d.id];
+        b.className = "wash-btn" + (disease === d.id ? " active" : "") + (locked ? " disabled" : "");
+      });
+    }
 
     // Wash toggles
     const washLabelEl = div("wash-label", simWrap);
@@ -559,6 +655,37 @@
         const b = washBtns[w.id];
         b.className = "wash-btn" + (wash[w.id] ? " active" : "") + (locked ? " disabled" : "");
         b.querySelector(".icon").textContent = wash[w.id] ? "🧼" : "🚰";
+      });
+    }
+
+    // Home Factors
+    const homeLabelEl = div("wash-label", simWrap);
+    homeLabelEl.innerHTML = '🏠 Home Factors';
+    const homeRow = div("wash-row", simWrap);
+    const homeBtns = {};
+    const HOME_DATA = [
+      { id:"stay_home", label:"Sick Stay Home", desc:"Infectious kids stay home the next day", activeIcon:"🛌", idleIcon:"🚸" },
+      { id:"home_hygiene", label:"Home Hygiene", desc:"Family hygiene lowers overnight spread", activeIcon:"🧽", idleIcon:"🏠" },
+      { id:"community_spread", label:"Community Illness", desc:"Germs travel in from the community at night", activeIcon:"🤧", idleIcon:"🌆" },
+    ];
+    HOME_DATA.forEach(h => {
+      const b = div("wash-btn", homeRow);
+      b.innerHTML = `<div class="icon">${h.idleIcon}</div><div class="label">${h.label}</div><div class="desc">${h.desc}</div>`;
+      b.addEventListener("click", () => {
+        if (tick > 0) return;
+        home[h.id] = !home[h.id];
+        renderHome();
+      });
+      homeBtns[h.id] = b;
+    });
+
+    function renderHome() {
+      const locked = tick > 0;
+      homeLabelEl.innerHTML = '🏠 Home Factors' + (locked ? ' <span>(reset to change)</span>' : '');
+      HOME_DATA.forEach(h => {
+        const b = homeBtns[h.id];
+        b.className = "wash-btn" + (home[h.id] ? " active" : "") + (locked ? " disabled" : "");
+        b.querySelector(".icon").textContent = home[h.id] ? h.activeIcon : h.idleIcon;
       });
     }
 
@@ -629,6 +756,23 @@
       dotEls.push(c);
     }
 
+    // Night overlay (rendered on top when active)
+    const nightOverlay = el("g", { opacity: 0, "pointer-events":"none" }, svg);
+    el("rect", { x:0, y:0, width:560, height:400, rx:8, fill:"#1a1f3a", opacity:0.78 }, nightOverlay);
+    // Moon
+    el("circle", { cx:480, cy:55, r:22, fill:"#FFF8DC", opacity:0.95 }, nightOverlay);
+    el("circle", { cx:488, cy:49, r:18, fill:"#1a1f3a" }, nightOverlay);
+    // Stars
+    const STARS = [[40,25],[90,45],[120,30],[180,50],[240,35],[300,55],[360,28],[420,48],[60,110],[140,125],[220,105],[320,120],[400,110],[450,140],[70,65],[260,75],[155,95]];
+    STARS.forEach(([x,y]) => {
+      el("circle", { cx:x, cy:y, r:1.2, fill:"#FFF8DC", opacity:0.85 }, nightOverlay);
+    });
+    // Houses & labels
+    el("text", { x:280, y:200, "text-anchor":"middle", "font-size":44 }, nightOverlay).textContent = "🏘️";
+    el("text", { x:280, y:245, "text-anchor":"middle", "font-size":20, "font-weight":700, fill:"#FFF8DC", "font-family":"DM Serif Display, serif" }, nightOverlay).textContent = "Night at Home";
+    const nightDayLabel = el("text", { x:280, y:270, "text-anchor":"middle", "font-size":12, fill:"#E8E6D8", "font-family":"Libre Franklin, sans-serif" }, nightOverlay);
+    const nightStatLabel = el("text", { x:280, y:295, "text-anchor":"middle", "font-size":11, fill:"#E8E6D8", "font-family":"Libre Franklin, sans-serif", opacity: 0.85 }, nightOverlay);
+
     // Transition banner
     const transBanner = div("transition-banner", simWrap);
     transBanner.style.display = "none";
@@ -642,21 +786,22 @@
     const tlBar = div("timeline-bar", timelineDiv);
     const tlFill = div("timeline-fill", tlBar);
     const tlLabels = div("timeline-labels", timelineDiv);
-    SCHEDULE.forEach((p,i) => {
+    DAYS.forEach((d,i) => {
       const sp = document.createElement("span");
-      sp.textContent = p.icon + " " + p.name;
+      sp.textContent = d.slice(0,3);
       sp.dataset.idx = i;
       tlLabels.appendChild(sp);
     });
 
     // Controls
     const ctrlRow = div("controls-row", simWrap);
-    const mainBtn = btn("▶ Start the Day", "btn-primary start", ctrlRow);
+    const mainBtn = btn("▶ Start the Week", "btn-primary start", ctrlRow);
     const resetBtn = btn("Reset", "btn-secondary", ctrlRow);
     const speedGroup = div("speed-group", ctrlRow);
     const speedLbl = document.createElement("span"); speedLbl.className = "speed-label"; speedLbl.textContent = "Speed"; speedGroup.appendChild(speedLbl);
+    const SPEED_LABELS = ["3x", "5x", "10x"];
     const speedBtns = [1,2,3].map(s => {
-      const b = btn(s+"x", "speed-btn" + (s===1?" active":""), speedGroup);
+      const b = btn(SPEED_LABELS[s-1], "speed-btn" + (s===1?" active":""), speedGroup);
       b.addEventListener("click", () => { speed = s; renderSpeed(); });
       return b;
     });
@@ -684,7 +829,7 @@
     // SIR Curve
     const sirCard = div("sir-card", simWrap);
     const sirTitleEl = div("sir-title", sirCard);
-    sirTitleEl.textContent = "Infection Curve Over the School Day";
+    sirTitleEl.textContent = "Infection Curve Across the Week";
     const sirSvg = document.createElementNS(svgNS, "svg");
     sirSvg.setAttribute("viewBox", "0 0 500 140");
     sirSvg.style.width = "100%";
@@ -693,6 +838,15 @@
     [0,35,70,105,140].forEach(y => {
       el("line", { x1:0, y1:y, x2:500, y2:y, stroke:"#f5f3ee", "stroke-width":0.8 }, sirSvg);
     });
+    // Day dividers & labels
+    for (let dIdx = 1; dIdx < DAYS.length; dIdx++) {
+      const x = (dIdx / DAYS.length) * 500;
+      el("line", { x1:x, y1:10, x2:x, y2:140, stroke:"#e5e0d5", "stroke-width":0.8, "stroke-dasharray":"2 3" }, sirSvg);
+    }
+    for (let dIdx = 0; dIdx < DAYS.length; dIdx++) {
+      const x = ((dIdx + 0.5) / DAYS.length) * 500;
+      el("text", { x:x, y:9, "text-anchor":"middle", "font-size":8, fill:"#c0bdb5", "font-family":"Libre Franklin, sans-serif" }, sirSvg).textContent = DAYS[dIdx].slice(0,3);
+    }
     const sirPaths = {};
     const sirAreas = {};
     ["s","i","r"].forEach(k => {
@@ -721,7 +875,7 @@
 
     // ── Controls ──
     mainBtn.addEventListener("click", () => {
-      if (dayDone) { doReset(); return; }
+      if (weekDone) { doReset(); return; }
       running = !running;
       if (running) { lastTime = 0; animId = requestAnimationFrame(simLoop); }
       else if (animId) { cancelAnimationFrame(animId); animId = null; }
@@ -732,131 +886,172 @@
 
     function doReset() {
       if (animId) { cancelAnimationFrame(animId); animId = null; }
-      running = false; dayDone = false; transitioning = false;
-      tick = 0; period = 0; sirHist = []; infEvents = [];
+      running = false; weekDone = false;
+      tick = 0; period = 0; day = 0; phase = "period"; phaseStartTick = 0; lastSirTick = -99;
+      sirHist = [];
       initStudents();
       reportDiv.style.display = "none";
       renderAll();
     }
 
     function renderControls() {
-      if (dayDone) {
-        mainBtn.textContent = "↻ New Day";
+      if (weekDone) {
+        mainBtn.textContent = "↻ New Week";
         mainBtn.className = "btn-primary done";
       } else if (running) {
         mainBtn.textContent = "⏸ Pause";
         mainBtn.className = "btn-primary pause";
       } else {
-        mainBtn.textContent = tick === 0 ? "▶ Start the Day" : "▶ Resume";
+        mainBtn.textContent = tick === 0 ? "▶ Start the Week" : "▶ Resume";
         mainBtn.className = "btn-primary start";
       }
     }
 
     // ── Simulation Loop ──
     function simLoop(timestamp) {
-      if (dayDone) { running = false; renderControls(); return; }
+      if (weekDone) { running = false; renderControls(); return; }
 
-      const interval = speed === 1 ? 50 : speed === 2 ? 28 : 16;
+      const interval = 16;
       if (timestamp - lastTime < interval) { animId = requestAnimationFrame(simLoop); return; }
       lastTime = timestamp;
 
-      const steps = speed === 3 ? 2 : 1;
+      // 3x / 5x / 10x buttons → 1 / 2 / 4 ticks per frame at ~60fps
+      const steps = speed === 1 ? 1 : speed === 2 ? 2 : 4;
       for (let step = 0; step < steps; step++) {
-        // Check transition complete
-        if (transitioning && !students.some(s => s.trans)) transitioning = false;
+        if (phase !== "night") {
+          const inTransition = phase === "transition";
 
-        const roomType = SCHEDULE[period]?.room || "classroom";
+          // Move students & tick recovery
+          students.forEach(s => {
+            // recovery & justInf tick for everyone, including at-home kids
+            if (s.status === "infectious") { s.infTimer--; if (s.infTimer <= 0) s.status = "recovered"; }
+            if (s.justInf > 0) s.justInf--;
+            if (s.at_home) return;
 
-        // Move students
-        students.forEach(s => {
-          if (s.trans) {
-            if (s.wpIdx < s.wps.length) {
-              const wp = s.wps[s.wpIdx];
-              const dx = wp.x - s.x, dy = wp.y - s.y;
-              const d = Math.sqrt(dx*dx + dy*dy);
-              if (d < 3) { s.x = wp.x; s.y = wp.y; s.wpIdx++; s.vx = 0; s.vy = 0; }
-              else {
-                const sp = Math.min(WALK_SPD, d*0.15+0.5);
-                s.vx = (dx/d)*sp + rng(-0.1,0.1);
-                s.vy = (dy/d)*sp + rng(-0.1,0.1);
-                s.x += s.vx; s.y += s.vy;
+            if (s.trans) {
+              if (s.wpIdx < s.wps.length) {
+                const wp = s.wps[s.wpIdx];
+                const dx = wp.x - s.x, dy = wp.y - s.y;
+                const d = Math.sqrt(dx*dx + dy*dy);
+                if (d < 3) { s.x = wp.x; s.y = wp.y; s.wpIdx++; s.vx = 0; s.vy = 0; }
+                else {
+                  const sp = Math.min(WALK_SPD, d*0.15+0.5);
+                  s.vx = (dx/d)*sp + rng(-0.1,0.1);
+                  s.vy = (dy/d)*sp + rng(-0.1,0.1);
+                  s.x += s.vx; s.y += s.vy;
+                }
+              } else {
+                s.trans = false; s.wps = []; s.wpIdx = 0;
+                s.vx = rng(-0.15,0.15); s.vy = rng(-0.15,0.15);
               }
             } else {
-              s.trans = false; s.wps = []; s.wpIdx = 0;
-              s.vx = rng(-0.15,0.15); s.vy = rng(-0.15,0.15);
+              const sRoom = roomTypeFor(s, period);
+              const rm = getRoom(s, sRoom);
+              const m = 12, mnX = rm.x+m, mxX = rm.x+rm.w-m, mnY = rm.y+22, mxY = rm.y+rm.h-m;
+              if (s.x < mnX+5) s.vx += 0.1; if (s.x > mxX-5) s.vx -= 0.1;
+              if (s.y < mnY+5) s.vy += 0.1; if (s.y > mxY-5) s.vy -= 0.1;
+              s.vx += rng(-0.06,0.06); s.vy += rng(-0.06,0.06);
+              s.vx *= 0.95; s.vy *= 0.95;
+              const sp = Math.sqrt(s.vx*s.vx + s.vy*s.vy);
+              const mx = sRoom === "playground" ? 0.8 : 0.45;
+              if (sp > mx) { s.vx = (s.vx/sp)*mx; s.vy = (s.vy/sp)*mx; }
+              s.x = clamp(s.x+s.vx, mnX, mxX);
+              s.y = clamp(s.y+s.vy, mnY, mxY);
             }
-          } else {
-            const rm = getRoom(s, roomType);
-            const m = 12, mnX = rm.x+m, mxX = rm.x+rm.w-m, mnY = rm.y+22, mxY = rm.y+rm.h-m;
-            if (s.x < mnX+5) s.vx += 0.1; if (s.x > mxX-5) s.vx -= 0.1;
-            if (s.y < mnY+5) s.vy += 0.1; if (s.y > mxY-5) s.vy -= 0.1;
-            s.vx += rng(-0.06,0.06); s.vy += rng(-0.06,0.06);
-            s.vx *= 0.95; s.vy *= 0.95;
-            const sp = Math.sqrt(s.vx*s.vx + s.vy*s.vy);
-            const mx = roomType === "playground" ? 0.8 : 0.45;
-            if (sp > mx) { s.vx = (s.vx/sp)*mx; s.vy = (s.vy/sp)*mx; }
-            s.x = clamp(s.x+s.vx, mnX, mxX);
-            s.y = clamp(s.y+s.vy, mnY, mxY);
-          }
-          if (s.status === "infectious") { s.infTimer--; if (s.infTimer <= 0) s.status = "recovered"; }
-          if (s.justInf > 0) s.justInf--;
-        });
+          });
 
-        // Infection
-        let wr = 1;
-        if (wash.before_lunch && roomType === "cafeteria") wr *= 0.6;
-        if (wash.after_recess && period === 3) wr *= 0.7;
-        if (wash.after_bathroom) wr *= 0.8;
-
-        for (let i = 0; i < N; i++) {
-          if (students[i].status !== "infectious") continue;
+          // Infection uses an accumulating exposure-dose model (at school only).
+          // Each susceptible builds up a dose while near infected peers; the dose
+          // decays when they drift apart. Per-tick infection chance scales with
+          // dose, so brief passing contact is unlikely to infect but a lunch
+          // period next to a sick classmate racks up meaningful risk.
           for (let j = 0; j < N; j++) {
-            if (students[j].status !== "susceptible") continue;
-            const dx = students[i].x - students[j].x, dy = students[i].y - students[j].y;
-            if (dx*dx + dy*dy < INF_RADIUS*INF_RADIUS) {
-              const den = transitioning ? 1.2 : (roomType === "cafeteria" ? 1.8 : roomType === "playground" ? 0.5 : 1.0);
-              if (Math.random() < BASE_TX * den * wr) {
-                students[j].status = "infectious";
-                students[j].infTimer = RECOVERY + Math.floor(rng(-40,40));
-                students[j].justInf = 30;
+            const sj = students[j];
+            if (sj.at_home || sj.status !== "susceptible") continue;
+            sj.exposure *= EXPOSURE_DECAY;
+            let dose = 0;
+            for (let i = 0; i < N; i++) {
+              const si = students[i];
+              if (i === j || si.at_home || si.status !== "infectious") continue;
+              const dx = sj.x - si.x, dy = sj.y - si.y;
+              if (dx*dx + dy*dy < INF_RADIUS*INF_RADIUS) {
+                const iRoom = roomTypeFor(si, period);
+                let wr = 1;
+                if (wash.before_lunch && iRoom === "cafeteria") wr *= 0.6;
+                if (wash.after_recess && period === AFTERNOON_PERIOD) wr *= 0.7;
+                if (wash.after_bathroom) wr *= 0.8;
+                const den = inTransition ? 1.2 : (iRoom === "cafeteria" ? 1.4 : iRoom === "playground" ? 0.5 : 1.0);
+                dose += den * wr;
+              }
+            }
+            sj.exposure = Math.min(EXPOSURE_CAP, sj.exposure + dose);
+            if (sj.exposure > MIN_EXPOSURE) {
+              const chance = BASE_TX * sj.exposure;
+              if (Math.random() < chance) {
+                sj.status = "infectious";
+                sj.infTimer = RECOVERY + Math.floor(rng(-40,40));
+                sj.justInf = 30;
+                sj.exposure = 0;
               }
             }
           }
+        } else {
+          // Night phase: only recovery ticks, no movement or school-based infection
+          students.forEach(s => {
+            if (s.status === "infectious") { s.infTimer--; if (s.infTimer <= 0) s.status = "recovered"; }
+            if (s.justInf > 0) s.justInf--;
+          });
         }
       }
 
       tick += steps;
 
-      // Period transitions
-      let boundary = 0;
-      for (let p = 0; p <= period; p++) {
-        if (p > 0) boundary += TRANS_TICKS;
-        if (p < period) boundary += SCHEDULE[p].duration;
-      }
-      const pTick = tick - boundary;
-
-      if (!transitioning && period < SCHEDULE.length && pTick >= SCHEDULE[period].duration) {
-        if (period + 1 >= SCHEDULE.length) {
-          dayDone = true; running = false;
-          renderAll(); renderControls();
-          showReport();
-          return;
+      // Phase state machine
+      if (phase === "transition") {
+        const stillWalking = students.some(s => !s.at_home && s.trans);
+        if (!stillWalking) {
+          phase = "period";
+          phaseStartTick = tick;
         }
-        transitioning = true;
-        period++;
-        const destType = SCHEDULE[period].room;
-        students.forEach(s => {
-          const dest = getRoom(s, destType);
-          s.wps = buildWaypoints(s, dest);
-          s.wpIdx = 0; s.trans = true; s.vx = 0; s.vy = 0;
-        });
+      } else if (phase === "period") {
+        const elapsed = tick - phaseStartTick;
+        if (elapsed >= PERIODS[period].duration) {
+          if (period + 1 >= PERIODS.length) {
+            // End of school day → night
+            phase = "night";
+            phaseStartTick = tick;
+            applyNightInfections();
+          } else {
+            phase = "transition";
+            phaseStartTick = tick;
+            period++;
+            startTransition();
+          }
+        }
+      } else if (phase === "night") {
+        const elapsed = tick - phaseStartTick;
+        if (elapsed >= NIGHT_TICKS) {
+          day++;
+          if (day >= DAYS.length) {
+            weekDone = true; running = false;
+            renderAll(); renderControls();
+            showReport();
+            return;
+          }
+          phase = "period";
+          phaseStartTick = tick;
+          period = 0;
+          processMorning();
+        }
       }
 
-      // SIR history
-      if (tick % 6 === 0) {
+      // SIR history — store normalized progress so the curve lines up with
+      // the day dividers regardless of variable transition lengths.
+      if (tick - lastSirTick >= 6) {
+        lastSirTick = tick;
         const c = {s:0,i:0,r:0};
         students.forEach(s => { if(s.status==="susceptible") c.s++; else if(s.status==="infectious") c.i++; else c.r++; });
-        sirHist.push(c);
+        sirHist.push({ ...c, p: computeProgress() });
       }
 
       renderAll();
@@ -864,9 +1059,51 @@
     }
 
     // ── Render ──
+    // Phase-aware progress: each period/transition/night counts as a fixed
+    // unit so the timeline stays honest even though real transition walks
+    // vary in length.
+    function computeProgress() {
+      if (weekDone) return 1;
+      const DAY_UNITS = PERIODS.reduce((a,p) => a+p.duration, 0) + TRANS_TICKS * (PERIODS.length-1) + NIGHT_TICKS;
+      const TOTAL = DAY_UNITS * DAYS.length;
+      let u = day * DAY_UNITS;
+      if (phase === "period") {
+        for (let i = 0; i < period; i++) u += PERIODS[i].duration + TRANS_TICKS;
+        u += Math.min(tick - phaseStartTick, PERIODS[period].duration);
+      } else if (phase === "transition") {
+        // period has been incremented to the destination; completed phases
+        // are periods 0..period-1 plus transitions 0..period-2
+        for (let i = 0; i < period; i++) {
+          u += PERIODS[i].duration;
+          if (i < period - 1) u += TRANS_TICKS;
+        }
+        const notHome = students.filter(s => !s.at_home);
+        const walking = notHome.filter(s => s.trans).length;
+        const frac = notHome.length > 0 ? 1 - (walking / notHome.length) : 1;
+        u += frac * TRANS_TICKS;
+      } else {
+        for (let i = 0; i < PERIODS.length; i++) {
+          u += PERIODS[i].duration;
+          if (i < PERIODS.length - 1) u += TRANS_TICKS;
+        }
+        u += Math.min(tick - phaseStartTick, NIGHT_TICKS);
+      }
+      return Math.min(u / TOTAL, 1);
+    }
+
     function renderAll() {
+      const isNight = phase === "night";
+      const inTransition = phase === "transition";
+
       // Dots
       students.forEach((s,i) => {
+        if (s.at_home) {
+          dotEls[i].setAttribute("opacity", "0");
+          auraEls[i].setAttribute("opacity", "0");
+          auraEls[i].setAttribute("r", "0");
+          return;
+        }
+        dotEls[i].setAttribute("opacity", isNight ? "0.15" : "1");
         dotEls[i].setAttribute("cx", s.x);
         dotEls[i].setAttribute("cy", s.y);
         dotEls[i].setAttribute("fill", COLORS[s.status]);
@@ -875,39 +1112,89 @@
         dotEls[i].setAttribute("stroke-width", s.justInf > 0 ? 2 : 1);
         auraEls[i].setAttribute("cx", s.x);
         auraEls[i].setAttribute("cy", s.y);
-        auraEls[i].setAttribute("r", s.status === "infectious" && !s.trans ? INF_RADIUS*0.55 : 0);
+        auraEls[i].setAttribute("r", (!isNight && s.status === "infectious" && !s.trans) ? INF_RADIUS*0.55 : 0);
+        auraEls[i].setAttribute("opacity", isNight ? "0" : "0.07");
       });
 
-      // Room highlights
+      // Room highlights — during staggered blocks, several rooms may be active at once
+      const classroomList = ROOMS.filter(rr => rr.type === "classroom");
       ROOMS.forEach(r => {
         let show = false;
-        if (transitioning && r.type === "hallway") show = true;
-        else if (!transitioning && SCHEDULE[period] && (SCHEDULE[period].room === r.type || (SCHEDULE[period].room === "classroom" && r.type === "classroom"))) show = true;
+        if (!isNight) {
+          if (inTransition && r.type === "hallway") show = true;
+          else if (!inTransition && PERIODS[period]) {
+            const types = PERIODS[period].rooms;
+            if (r.type === "classroom") {
+              const idx = classroomList.indexOf(r);
+              show = idx >= 0 && types[idx] === "classroom";
+            } else if (r.type !== "hallway") {
+              show = types.includes(r.type);
+            }
+          }
+        }
         roomHighlights[r.id].setAttribute("opacity", show ? 1 : 0);
         if (show) {
-          roomHighlights[r.id].innerHTML = `<animate attributeName="stroke-opacity" values="1;0.3;1" dur="${transitioning?'1.5':'2.5'}s" repeatCount="indefinite" />`;
+          roomHighlights[r.id].innerHTML = `<animate attributeName="stroke-opacity" values="1;0.3;1" dur="${inTransition?'1.5':'2.5'}s" repeatCount="indefinite" />`;
         }
       });
 
-      // Wash map indicators
-      washMapBefore.setAttribute("opacity", wash.before_lunch ? 1 : 0);
-      washMapAfter.setAttribute("opacity", wash.after_recess ? 1 : 0);
+      // Wash map indicators (hidden at night)
+      washMapBefore.setAttribute("opacity", (wash.before_lunch && !isNight) ? 1 : 0);
+      washMapAfter.setAttribute("opacity", (wash.after_recess && !isNight) ? 1 : 0);
+
+      // Night overlay
+      nightOverlay.setAttribute("opacity", isNight ? 1 : 0);
+      if (isNight) {
+        const nextDayIdx = Math.min(day + 1, DAYS.length - 1);
+        nightDayLabel.textContent = DAYS[day] + " evening → " + DAYS[nextDayIdx] + " morning";
+        if (home.community_spread) {
+          nightStatLabel.textContent = home.home_hygiene
+            ? "🤧 Community illness · 🧽 home hygiene reducing spread"
+            : "🤧 Germs spreading in the community";
+        } else {
+          nightStatLabel.textContent = "Quiet evening · no new cases from outside";
+        }
+      }
 
       // Transition banner
-      transBanner.style.display = transitioning ? "block" : "none";
-      if (transitioning) transBanner.textContent = "🚶 Students moving to " + (SCHEDULE[period]?.name || "") + "...";
+      if (isNight) {
+        transBanner.style.display = "none";
+      } else if (inTransition) {
+        transBanner.style.display = "block";
+        const nextName = PERIODS[period]?.name || "";
+        const isBlock = nextName.startsWith("Block");
+        transBanner.textContent = isBlock
+          ? "🚶 Classes rotating through the hallway..."
+          : "🚶 Students moving to " + nextName + "...";
+      } else {
+        transBanner.style.display = "none";
+      }
 
       // Timeline
-      const progress = Math.min(tick / totalTicks, 1);
-      const pIcon = SCHEDULE[period]?.icon || "🏁";
-      const pName = SCHEDULE[period]?.name || "Day Over";
-      const pTime = SCHEDULE[period]?.time || "3:00 PM";
-      tlPeriod.textContent = dayDone ? "🏁 Day Complete" : transitioning ? "🚶 Transition" : pIcon + " " + pName;
-      tlTime.textContent = (dayDone ? "3:00 PM" : pTime) + " · " + Math.round(progress*100) + "%";
+      const progress = computeProgress();
+      const dayName = DAYS[Math.min(day, DAYS.length-1)];
+      let headerText, timeStr;
+      if (weekDone) {
+        headerText = "🏁 Week Complete";
+        timeStr = "Friday 3:00 PM";
+      } else if (isNight) {
+        headerText = dayName + " · 🌙 Night at Home";
+        timeStr = "Evening";
+      } else if (inTransition) {
+        headerText = dayName + " · 🚶 Transition";
+        timeStr = PERIODS[period]?.time || "";
+      } else {
+        const pIcon = PERIODS[period]?.icon || "";
+        const pName = PERIODS[period]?.name || "";
+        headerText = dayName + " · " + pIcon + " " + pName;
+        timeStr = PERIODS[period]?.time || "";
+      }
+      tlPeriod.textContent = headerText;
+      tlTime.textContent = timeStr + " · " + Math.round(progress*100) + "%";
       tlFill.style.width = (progress*100) + "%";
-      tlFill.className = "timeline-fill" + (transitioning ? " transitioning" : "");
+      tlFill.className = "timeline-fill" + ((inTransition || isNight) ? " transitioning" : "");
       Array.from(tlLabels.children).forEach((sp,i) => {
-        sp.className = (i === period && !dayDone) ? "active" : "";
+        sp.className = (i === day && !weekDone) ? "active" : "";
       });
 
       // Counters
@@ -917,22 +1204,24 @@
       counterEls.i.textContent = cnt.i;
       counterEls.r.textContent = cnt.r;
 
-      // SIR curves
+      // SIR curves (x-axis = normalized weekly progress)
       if (sirHist.length > 1) {
         ["s","i","r"].forEach(k => {
-          const pts = sirHist.map((h,idx) => {
-            const x = (idx / (sirHist.length-1)) * 500;
-            const y = 130 - (h[k]/N)*120;
+          const pts = sirHist.map(h => {
+            const x = Math.min(h.p * 500, 500);
+            const y = 130 - (h[k]/N)*118;
             return x+","+y;
           });
           const d = "M" + pts.join(" L");
           sirPaths[k].setAttribute("d", d);
-          const lastX = ((sirHist.length-1)/(sirHist.length-1))*500;
+          const lastX = Math.min(sirHist[sirHist.length-1].p * 500, 500);
           sirAreas[k].setAttribute("d", d + " L"+lastX+",140 L0,140 Z");
         });
       }
 
       renderWash();
+      renderHome();
+      renderDisease();
       renderControls();
     }
 
@@ -941,27 +1230,38 @@
       students.forEach(s => { if(s.status==="susceptible") cnt.s++; else if(s.status==="infectious") cnt.i++; else cnt.r++; });
       const total = Math.max(0, cnt.i + cnt.r - 1);
       const washCount = Object.values(wash).filter(Boolean).length;
+      // Count helpful home factors (stay_home + home_hygiene). community_spread is a risk factor, not a control.
+      const goodHomeCount = (home.stay_home ? 1 : 0) + (home.home_hygiene ? 1 : 0);
+      const totalGood = washCount + goodHomeCount;
+
       const color = total <= 5 ? "#2E7D32" : total <= 15 ? "#F57F17" : "#C62828";
       const bg = total <= 5 ? "#E8F5E9" : total <= 15 ? "#FFF8E1" : "#FFEBEE";
       const border = total <= 5 ? "#A5D6A7" : total <= 15 ? "#FFE082" : "#EF9A9A";
 
       let hint = "";
-      if (washCount === 0) hint = "No handwashing stations were active. Try turning some on!";
-      else if (washCount < 3) hint = washCount + " of 3 stations active. What happens with all three?";
-      else hint = "All handwashing stations active! Compare this to a run with none. 🧼";
+      if (totalGood === 0 && !home.community_spread) {
+        hint = "No preventive measures were active. Try toggling some on and run the week again!";
+      } else if (totalGood === 0 && home.community_spread) {
+        hint = "Community illness was on with no preventive measures. Try layering in some defenses.";
+      } else if (totalGood < 3) {
+        hint = totalGood + " preventive measures active. What happens with more of them on?";
+      } else {
+        hint = "Strong prevention this week! Compare this to a run with no measures. 🧼";
+      }
 
       reportDiv.style.display = "block";
       reportDiv.style.background = bg;
       reportDiv.style.border = "2px solid " + border;
       reportDiv.innerHTML = `
-        <div class="report-title">📋 End-of-Day Report</div>
+        <div class="report-title">📋 End-of-Week Report</div>
         <div class="report-count" style="color:${color}">${total} of ${N} students</div>
-        <div class="report-sub">caught the illness today</div>
+        <div class="report-sub">caught the illness this week</div>
         <div class="report-hint">${hint}</div>
       `;
     }
 
     // ── Init ──
+    applyDisease();
     initStudents();
     renderAll();
   })();
