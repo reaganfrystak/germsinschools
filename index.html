@@ -540,16 +540,10 @@
     <p>Schools concentrate large numbers of children into small, shared spaces for hours at a time. A typical elementary classroom might have 20 to 30 students interacting in close proximity throughout the day. They share art supplies, toys, and communal lunch tables. Each of these moments is an opportunity for the disease to transfer.</p>
     <p>Unlike adults in workplaces, young children are less likely to cover their coughs properly, wash their hands without prompting, or even recognize when they're contagious. This makes school environments especially efficient at spreading illness.</p>
 
-    <!-- FIGURE 2: Transmission Points (non-interactive — replace with your designed figure) -->
+    <!-- FIGURE 2: Transmission Points -->
     <div class="figure">
-      <div class="figure-placeholder">
-        <div>
-          <div style="font-size: 32px; margin-bottom: 8px;">🏫</div>
-          <div>Your School Transmission Points illustration goes here</div>
-          <div style="font-size: 12px; color: #bbb; margin-top: 4px;">Replace this with your manually designed figure</div>
-        </div>
-      </div>
-      <div class="figure-caption"><strong>Figure 2.</strong> Common transmission points during a school day: shared desks, cafeteria tables, playground equipment, and hallway traffic.</div>
+      <img src="images/schoolspaces-fig2.png" alt="Where do germs travel? An infographic showing four hotspots during the school day: shared classroom desks and supplies, hallway crossover, cafeteria food and tables, and playground equipment." style="display:block;width:100%;height:auto;">
+      <div class="figure-caption"><strong>Figure 2.</strong> Common transmissions points during the school day. Spaces like the classroom, hallway, cafeteria, and playground are common points where disease spreads.</div>
     </div>
 
     <!-- ═══════ SECTION 4 ═══════ -->
@@ -561,7 +555,7 @@
     <!-- ═══════ SECTION 5: INTERACTIVE ═══════ -->
     <div class="section-label">05</div>
     <h2>How It Works</h2>
-    <p>The simulation below models a school week at Epidemic Elementary using an SIR framework. Before starting, the school's handwashing policy can be changed by toggling key moments: before lunch, after recess, and throughout the day. Then, watch as one sick student moves through the schedule alongside their classmates. When students walk through the hallway between periods, children from different classrooms mix for the first time. This creates new opportunities for the illness to spread. After school, the simulation flips to a neighborhood view where each student goes home to a family — illness can travel between siblings and parents overnight, then walk back into school the next morning. Try simulating with no handwashing stations active, then reset and turn them all on. Notice how the infection curve flattens and how many fewer students end up sick by Friday.</p>
+    <p>The simulation below models a school week at Epidemiology Elementary using an SIR framework. Before starting, the school's handwashing policy can be changed by toggling key moments: before lunch, after recess, and throughout the day. Then, watch as one sick student moves through the schedule alongside their classmates. When students walk through the hallway between periods, children from different classrooms mix for the first time. This creates new opportunities for the illness to spread. After school, the simulation flips to a neighborhood view where each student goes home to a family — illness can travel between siblings and parents overnight, then walk back into school the next morning. Try simulating with no handwashing stations active, then reset and turn them all on. Notice how the infection curve flattens and how many fewer students end up sick by Friday.</p>
 
     <!-- ═══════ SIMULATION ═══════ -->
     <div id="simulation-container"></div>
@@ -627,11 +621,12 @@
     ];
     const INF_RADIUS = 20, N = 36, TRANS_TICKS = 50, WALK_SPD = 2.2;
     // Neighborhood layout — 6 homes in a 3×2 grid, spaced apart for breathing
-    // room. 6 students per home plus one family member each.
+    // room. Row 1 sits below the status header; row 2 rests against the road.
+    // 6 students per home plus one family member each.
     const HOMES = [];
     for (let r = 0; r < 2; r++) {
       for (let c = 0; c < 3; c++) {
-        HOMES.push({ idx: r*3+c, x: 25 + c*190, y: 85 + r*162, w: 130, h: 100 });
+        HOMES.push({ idx: r*3+c, x: 25 + c*190, y: 105 + r*150, w: 130, h: 100 });
       }
     }
     const HOME_COUNT = HOMES.length;
@@ -834,11 +829,11 @@
     // Title
     const titleEl = document.createElement("div");
     titleEl.className = "sim-title";
-    titleEl.textContent = "A Week at Epidemic Elementary";
+    titleEl.textContent = "A Week at Epidemiology Elementary";
     simWrap.appendChild(titleEl);
     const descEl = document.createElement("p");
     descEl.className = "sim-desc";
-    descEl.textContent = "It's Monday morning, and one kid showed up sick. Choose what they caught, set the school's handwashing rules, decide what's happening at home, and follow the class through five days — at school by day, at home by night — to see how far the bug travels.";
+    descEl.textContent = "It's Monday morning, and one kid showed up to school sick. Choose what illness they caught, set the school's handwashing rules, decide what happens at home, and follow the class through five days, during the school day and at home during the evening, to see how far the disease spreads.";
     simWrap.appendChild(descEl);
 
     // Disease picker (radio-style — only one active)
@@ -1097,26 +1092,31 @@
       el("rect", { x:h.x, y:h.y, width:h.w, height:h.h, rx:3, fill:"#2D3A60", stroke:"#4A5D8A", "stroke-width":1.2 }, hg);
       // Roof
       el("polygon", { points: `${h.x-7},${h.y} ${h.x+h.w/2},${h.y-23} ${h.x+h.w+7},${h.y}`, fill:"#3D2A20", stroke:"#5A4030", "stroke-width":1.2 }, hg);
-      // Chimney + smoke
+      // Chimney (no smoke — kept things tight against neighboring rows)
       el("rect", { x:h.x+h.w-32, y:h.y-21, width:7, height:13, fill:"#3A2A20", stroke:"#5A4030", "stroke-width":0.5 }, hg);
-      el("circle", { cx:h.x+h.w-29, cy:h.y-25, r:2.2, fill:"#888", opacity:0.28 }, hg);
-      el("circle", { cx:h.x+h.w-26, cy:h.y-30, r:1.8, fill:"#888", opacity:0.18 }, hg);
       // Window (glowing) covers the upper portion behind the kid dots
       el("rect", { x:h.x+8, y:h.y+8, width:h.w-16, height:24, rx:1.5, fill:"#FFE082", opacity:0.35 }, hg);
       el("line", { x1:h.x+h.w/2, y1:h.y+8, x2:h.x+h.w/2, y2:h.y+32, stroke:"#5A4030", "stroke-width":0.5, opacity:0.5 }, hg);
       // Front door
       el("rect", { x:h.x+h.w/2-9, y:h.y+h.h-22, width:18, height:22, fill:"#3D2820", stroke:"#5A4030", "stroke-width":0.7 }, hg);
       el("circle", { cx:h.x+h.w/2+4, cy:h.y+h.h-11, r:0.9, fill:"#FFD700" }, hg);
-      // Address label
-      el("text", { x:h.x+h.w/2, y:h.y+h.h+13, "text-anchor":"middle", "font-size":8.5, fill:"#A8B5D9", "font-family":"Libre Franklin, sans-serif" }, hg).textContent = "Home " + (idx+1);
+      // Address label — centered in the gap between this house and the next
+      el("text", { x:h.x+h.w/2, y:h.y+h.h+15, "text-anchor":"middle", "font-size":8.5, fill:"#A8B5D9", "font-family":"Libre Franklin, sans-serif", "letter-spacing":"0.04em" }, hg).textContent = "Home " + (idx+1);
     });
 
-    // Floating legend explaining the family-member marker (fades with overlay).
+    // "Who's who" legend pill — squarer footprint, hugs the right edge so it
+    // doesn't crowd the family-sick status line.
     const famLegendG = el("g", {}, nightOverlay);
-    el("rect", { x:14, y:372, width:240, height:16, rx:8, fill:"#0E1428", opacity:0.6 }, famLegendG);
-    el("circle", { cx:28, cy:380, r:6, fill:COLORS.susceptible, stroke:"#FFD700", "stroke-width":1.6 }, famLegendG);
-    el("text", { x:28, y:383, "text-anchor":"middle", "font-size":7 }, famLegendG).textContent = "👤";
-    el("text", { x:42, y:383, "font-size":9.5, fill:"#FFE082", "font-family":"Libre Franklin, sans-serif", "font-weight":600 }, famLegendG).textContent = "= adult family member · circles = kids";
+    el("rect", { x:444, y:12, width:106, height:96, rx:8, fill:"#0E1428", stroke:"#3A4566", "stroke-width":0.6, opacity:0.88 }, famLegendG);
+    el("text", { x:497, y:28, "text-anchor":"middle", "font-size":9, "font-weight":700, fill:"#FFE082", "font-family":"Libre Franklin, sans-serif", "letter-spacing":"0.12em" }, famLegendG).textContent = "WHO'S WHO";
+    el("line", { x1:454, y1:35, x2:540, y2:35, stroke:"#3A4566", "stroke-width":0.6 }, famLegendG);
+    // Kid row
+    el("circle", { cx:462, cy:55, r:5, fill:COLORS.susceptible, stroke:"rgba(255,255,255,0.6)", "stroke-width":1 }, famLegendG);
+    el("text", { x:474, y:58, "font-size":10, fill:"#E8E6D8", "font-family":"Libre Franklin, sans-serif" }, famLegendG).textContent = "Kid";
+    // Family row
+    el("circle", { cx:462, cy:82, r:6, fill:COLORS.susceptible, stroke:"#FFD700", "stroke-width":1.6 }, famLegendG);
+    el("text", { x:462, y:84.5, "text-anchor":"middle", "font-size":7 }, famLegendG).textContent = "👤";
+    el("text", { x:474, y:85, "font-size":10, fill:"#FFE082", "font-family":"Libre Franklin, sans-serif" }, famLegendG).textContent = "Family";
 
     // Family dots — created in their own layer so they render ON TOP of
     // nightOverlay (above house drawings). Family slot is offset from kid
@@ -1201,7 +1201,7 @@
       <div class="key-item"><span class="key-dot key-dot-i"></span>Sick</div>
       <div class="key-item"><span class="key-dot key-dot-r"></span>Recovered</div>
       <div class="key-divider"></div>
-      <div class="key-item" title="Susceptible students build up an exposure dose when near sick classmates. Brighter ring = closer to catching it."><span class="key-ring"></span>Exposure building</div>
+      <div class="key-item" title="Susceptible students build up an exposure dose when near sick classmates. Brighter ring = closer to catching it."><span class="key-ring"></span>Exposure Area</div>
       <div class="key-item" title="A sick student's contagious zone."><span class="key-aura"></span>Germ zone</div>
     `;
 
@@ -1245,9 +1245,9 @@
     // Counters
     const countersDiv = div("counters", simWrap);
     const counterData = [
-      { key:"s", label:"Healthy", color:COLORS.susceptible, emoji:"💚" },
-      { key:"i", label:"Sick", color:COLORS.infectious, emoji:"🤒" },
-      { key:"r", label:"Recovered", color:COLORS.recovered, emoji:"💙" },
+      { key:"s", label:"Healthy", color:COLORS.susceptible },
+      { key:"i", label:"Sick", color:COLORS.infectious },
+      { key:"r", label:"Recovered", color:COLORS.recovered },
     ];
     const counterEls = {};
     counterData.forEach(c => {
@@ -1255,7 +1255,7 @@
       d.style.color = c.color;
       d.style.background = c.color + "10";
       d.style.border = "1.5px solid " + c.color + "30";
-      d.innerHTML = `<div class="emoji">${c.emoji}</div><div class="value" style="color:${c.color}">0</div><div class="label" style="color:${c.color};opacity:0.7">${c.label}</div>`;
+      d.innerHTML = `<div class="value" style="color:${c.color}">0</div><div class="label" style="color:${c.color};opacity:0.7">${c.label}</div>`;
       counterEls[c.key] = d.querySelector(".value");
     });
 
